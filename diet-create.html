@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Diet - FWG</title>
+    <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hence work" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="dist/img/favi.ico">
+    <link rel="icon" href="dist/img/favi.ico" type="image/x-icon">
+
+    <!-- Morris Charts CSS -->
+    <link href="dist/vendors4/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+    <!-- Data Table CSS -->
+    <link href="dist/vendors4/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="dist/vendors4/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <!-- Toggles CSS -->
+    <link href="dist/vendors4/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="dist/vendors4/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+
+    <!-- Toastr CSS -->
+    <link href="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Pace -->
+    <link rel="stylesheet" href="dist/vendors4/pace-progress/themes/blue/pace-theme-minimal.css">
+
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="dist/css/fontawesome-free/css/all.min.css">
+
+    <style>
+        .toolbar {
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HK Wrapper -->
+    <div class="hk-wrapper hk-vertical-nav">
+
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+            <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i
+                    class="ion ion-ios-menu"></i></a>
+            <a class="navbar-brand" href="admin.html">
+                <img class="brand-img d-inline-block mr-5" src="dist/img/fitit-logo.png" alt="brand" width="10%" />
+            </a>
+            <ul class="navbar-nav hk-navbar-content" id="ui_header_profile"></ul>
+        </nav>
+        <!-- /Top Navbar -->
+
+        <!--Vertical Nav-->
+        <div id="navHTML"></div>
+        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+        <!--/Vertical Nav-->
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper">
+            <!-- Breadcrumb -->
+            <nav class="hk-breadcrumb" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light bg-transparent">
+                    <li class="breadcrumb-item"><a href="admin.html?menu_item=menu_dashboard">Home</a></li>
+                    <li class="breadcrumb-item"><a href="diet.html?menu_item=diet_plan">Diet</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Diet Configuration</li>
+                </ol>
+            </nav>
+            <!-- /Breadcrumb -->
+            <!-- Container -->
+            <div class="container-fluid mt-sm-30 mt-15">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <!-- Wrapper -->
+                        <section class="hk-sec-wrapper">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="txt_plan_name">Diet Plan:</label>
+                                    <input type="text" class="form-control" id="txt_plan_name" placeholder="Plan Name">
+                                </div>
+                                <!-- <div class="col-md-2">
+                                    <label for="list_previous_diet">Previous Diet:</label>
+                                    <select class="form-control" id="list_previous_diet">
+                                        <option value="" hidden selected>Choose Previous</option>
+                                    </select>
+                                </div> -->
+                                <div class="col-md-2">
+                                    <label for="list_category">Diet Category:</label>
+                                    <select class="form-control" id="list_category">
+                                        <option value="" hidden selected>Diet Category</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="list_food_type">Food Type:</label>
+                                    <select class="form-control" id="list_food_type">
+                                        <option value="" hidden selected>Diet Category</option>
+                                        <option value="VEGETARIAN">Vegetarian</option>
+                                        <option value="NON-VEGETARIAN">Non Vegetarian</option>
+                                        <option value="VEGAN">Vegan</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="txt_day_duration">Total Day (Duration):</label>
+                                    <input type="text" class="form-control" id="txt_day_duration"
+                                        placeholder="Days in number">
+                                </div>
+                            </div>
+                            <div class="row mt-10">
+                                <div class="col-md-12">
+                                    <div class="d-flex float-right" id="div_diet_button">
+                                        <button class="btn btn-primary m-1" id="btn_diet_create"
+                                            onclick="createDietPlan(this)"><i class="fas fa-plus"></i> Create</button>
+                                        <a class="btn btn-warning m-1 d-none" id="btn_assign_diet"
+                                            href="javascript:void(0)"><i class="fa fa-user-plus"></i> Assign </a>
+                                        <button class="btn btn-success m-1 d-none" id="btn_diet_update"
+                                            onclick="updateDietPlan(this)"><i class="fas fa-check"></i> Update</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2" id="view_tbl_food_bundle">
+                                <div class="col-md-6 div-scrollable">
+                                    <div class="text-center bg-secondary">
+                                        <p class="text-white">All Food Bundles</p>
+                                    </div>
+                                    <table id="tbl_food_bundle" class="table table-bordered table-striped "
+                                        style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>Food Bundle</th>
+                                                <th>Category</th>
+                                                <th>Time</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-center">
+                                                <td colspan="4"><img src="dist/img/loader.gif" style="width:30px">
+                                                </td>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-6 div-scrollable" id="view_tbl_diet_food_bundle">
+                                    <div class="text-center bg-secondary">
+                                        <p class="text-white">Diet Food Bundles</p>
+                                    </div>
+                                    <table id="tbl_diet_food_bundle" class="table table-bordered table-striped "
+                                        style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>Index</th>
+                                                <th>Food Bundle</th>
+                                                <th>Food Time</th>
+                                                <th>Time</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-center">
+                                                <td hidden></td>
+                                                <td colspan="4"><img src="dist/img/loader.gif" style="width:30px">
+                                                </td>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- /Row -->
+            </div>
+            <!-- /Container -->
+
+
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /HK Wrapper -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_time" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Food Bundle Item : </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <!-- <div class="col-md-4">
+                            <label for="list_modal_food_bundle" id="list_modal_food_bundle">Food Bundle</label>
+                                 <select class="form-control" id="list_modal_food_bundle">
+                                <option value="" hidden selected>Choose Food Bundle</option>
+                            </select> 
+                        </div> -->
+                        <input type="hidden" id="list_modal_food_bundle">
+                        <div class="col-md-4">
+                            <label for="list_modal_food_time">Food Time</label>
+                            <select class="form-control" id="list_modal_food_time">
+                                <option value="" hidden selected>Choose Food Bundle</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="txt_modal_time">Time (24-Hour)</label>
+                            <div class="d-flex">
+                                <input type="time" id="txt_modal_time" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div id="div_modal_button"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="dist/vendors4/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="dist/vendors4/popper.js/dist/umd/popper.min.js"></script>
+    <script src="dist/vendors4/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Slimscroll JavaScript -->
+    <script src="dist/js/jquery.slimscroll.js"></script>
+
+    <!-- Fancy Dropdown JS -->
+    <script src="dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- FeatherIcons JavaScript -->
+    <script src="dist/js/feather.min.js"></script>
+
+    <!-- Toggles JavaScript -->
+    <script src="dist/vendors4/jquery-toggles/toggles.min.js"></script>
+    <script src="dist/js/toggle-data.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+
+    <!-- Counter Animation JavaScript -->
+    <script src="dist/vendors4/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="dist/vendors4/jquery.counterup/jquery.counterup.min.js"></script>
+
+    <!-- Data Table JavaScript -->
+    <script src="dist/vendors4/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="dist/vendors4/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="dist/vendors4/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="dist/vendors4/jszip/dist/jszip.min.js"></script>
+    <script src="dist/vendors4/pdfmake/build/pdfmake.min.js"></script>
+    <script src="dist/vendors4/pdfmake/build/vfs_fonts.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="dist/vendors4/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="dist/js/dataTables-data.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="dist/vendors4/raphael/raphael.min.js"></script>
+    <script src="dist/vendors4/morris.js/morris.min.js"></script>
+
+    <!-- Easy pie chart JS -->
+    <script src="dist/vendors4/easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+
+    <!-- Sweet-alert -->
+    <script src="dist/sweetalert2.js"></script>
+
+    <!-- EChartJS JavaScript -->
+    <script src="dist/vendors4/echarts/dist/echarts-en.min.js"></script>
+
+    <!-- Init JavaScript -->
+    <script src="dist/js/init.js"></script>
+    <script src="dist/js/dashboard2-data.js"></script>
+
+    <!-- Pace -->
+    <script src="dist/vendors4/pace-progress/pace.min.js"></script>
+
+    <!-- Custom js -->
+    <script src="dist/app.js"></script>
+    <script src="dist/menu-items.js"></script>
+
+    <!-- Authorization -->
+    <script src="dist/authorization.js"></script>
+</body>
+<script>
+    // get access list from local storage
+    const accessList = JSON.parse(localStorage.getItem('access_list'));
+    const adminType = JSON.parse(localStorage.getItem('type'));
+
+
+    function initFoodBundleItemTable() {
+        return $("#tbl_diet_food_bundle").DataTable({
+            // responsive: true,
+            paging: false,
+            destroy: true,
+            "columns": [{
+                "width": "2%"
+            }, {
+                "width": "50%"
+            }, {
+                "width": "5%"
+            }, {
+                "width": "10%"
+            }, {
+                "width": "10%"
+            }],
+            info: false,
+            scrollY: '700px',
+            scrollX: true,
+            "language": {
+                "emptyTable": "No data available for selected time."
+            }
+        });
+    }
+    let tblDietFoodBundleItem = initFoodBundleItemTable()
+
+    function initFoodBundleTable() {
+
+        var tbl = $("#tbl_food_bundle").DataTable({
+            // responsive: true,
+            paging: false,
+            destroy: true,
+            "columns": [{
+                "max-width": "2%"
+
+            }, {
+                "max-width": "5%"
+            }, {
+                "max-width": "10%"
+            }, {
+                "max-width": "10%"
+            }],
+            info: false,
+            scrollY: '1000px',
+            dom: '<"toolbar">frtip',
+            "language": {
+                "emptyTable": "No data available for selected time."
+            }
+        });
+
+        $('div.toolbar').html(`<select class="form-control mt-4" id="list_food_bundle_time" onchange="filterFoodBundleByTime()">
+                                        <option value="" hidden selected>Filter Time</option>
+                                    </select>`);
+        // Set List
+        try {
+            $('#list_food_bundle_time').html('<option value="" hidden>Select Food Time</option>')
+            for (let i = 0; i < foodTimeResult.length; i++) {
+                $('#list_food_bundle_time').append(`<option value="${foodTimeResult[i]._id}" ${selectedTime == foodTimeResult[i]._id ? 'selected' : ''}>${foodTimeResult[i].food_time}</option>`)
+            }
+        } catch (error) { }
+
+        return tbl;
+    }
+    let tblDietFoodBundle = initFoodBundleTable()
+
+    $('.dataTables_scrollBody').css('height', ($(window).height() - 200));
+
+    // URL
+    let searchParams = new URLSearchParams(window.location.search)
+    let diet, foodCategoryResult, foodTimeResult, foodBundleResult, allDiet
+
+    // Get Food Category
+    $.getJSON(`${BASE_URL}/food-category/get`, categoryResult => {
+
+        foodCategoryResult = categoryResult.data
+        // Fill Option in list
+        for (let i = 0; i < foodCategoryResult.length; i++) {
+            $('#list_category').append(`<option value="${foodCategoryResult[i]._id}">${foodCategoryResult[i].category}</option>`)
+        }
+    })
+        .fail(error => error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError())
+
+    // Get Food Time
+    $.getJSON(`${BASE_URL}/food-time/get`, timeResult => {
+        foodTimeResult = timeResult.data
+
+        // Set List
+        $('#list_food_bundle_time').html('<option value="" hidden>Select Food Time</option>')
+        for (let i = 0; i < foodTimeResult.length; i++) {
+            $('#list_food_bundle_time').append(`<option value="${foodTimeResult[i]._id}">${foodTimeResult[i].food_time}</option>`)
+        }
+    })
+        .fail(error => error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError())
+
+    // Get Food Bundle
+    $.getJSON(`${BASE_URL}/food-bundle/get`, foodBundlesResult => {
+        foodBundleResult = foodBundlesResult.data
+        setFoodBundleTable([])
+    })
+        .fail(error => error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError())
+
+    function setFoodBundleTable(bundleData) {
+        // Set Table
+        tblDietFoodBundle.clear().draw()
+        var tableRows = []
+        for (var i = 0; i < bundleData.length; i++) {
+            var tempBundle = bundleData[i];
+            var bundleName = `<a href="food-bundle-item.html?bundle_id=${tempBundle._id}" target="_blank" style="text-decoration: none;">${tempBundle.bundle_name}</a>`;
+            var foodTime = tempBundle.food_time[0].food_time;
+            var category = tempBundle.food_category[0].category;
+            var button = `<button type="button" class="btn btn-warning" onclick="openAddFoodBundle('${tempBundle._id}','${tempBundle.bundle_name}')"><i class="fas fa-plus"></i></button>`;
+            tableRows.push([
+                bundleName, category, foodTime, button
+            ])
+        }
+
+        tblDietFoodBundle.rows.add(tableRows).draw();
+        tblDietFoodBundle = initFoodBundleTable()
+    }
+
+    if (searchParams.has('diet_plan_id') && searchParams.get('diet_plan_id') != null) {
+        $('#btn_diet_create').hide()
+        $('#btn_diet_update,#btn_add_bundle').removeClass('d-none')
+        // $('#div_table').removeClass('d-none')
+
+        getDiet();
+
+        if (accessList.includes("diet_assign") && adminType == "SUB") {
+            $('#btn_assign_diet').removeClass('d-none');
+            $('#div_diet_button').attr('href', 'diet-assign.html?menu_item=diet_plan&diet_plan_id=' + searchParams.has('diet_plan_id'))
+        }
+    } else {
+        $('#btn_diet_create').show()
+        $('#div_table').remove()
+        $('#view_tbl_diet_food_bundle,#view_tbl_food_bundle').remove()
+
+    }
+
+    // Get All Diet
+    // $.getJSON(`${BASE_URL}/diet/get`, dietResult => {
+    //     allDiet = dietResult.data
+
+    //     // Set to Previous Diet
+    //     $('#list_previous_diet').html('<option value="" selected>Choose Previous</option>')
+    //     if (allDiet.length > 0) {
+    //         allDiet.forEach(value => {
+
+    //             if (searchParams.has('diet_plan_id') && searchParams.get('diet_plan_id') == value._id) {
+    //                 return;
+    //             }
+
+    //             $('#list_previous_diet').append(`<option value="${value._id}">${value.plan_name}</option>`)
+    //         })
+    //     }
+    // })
+    //     .fail(error => error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError())
+
+    // Get Diet
+    function getDiet() {
+
+        $.getJSON(`${BASE_URL}/diet/get?id=${encodeURI(searchParams.get('diet_plan_id'))}`).then(result => {
+            // console.clear()
+            let {
+                data
+            } = result
+
+            diet = data;
+
+            // Plan Name, Category, Type, Days
+            $('#txt_plan_name').val(data.plan_name)
+            $('#list_food_type').val(data.food_type)
+            $('#txt_day_duration').val(data.days)
+
+            if (data.previous_diet_id) {
+                $('#list_previous_diet').val(data.previous_diet_id)
+            }
+
+            // Select Category
+            if (foodCategoryResult.length == 0) {
+                $('#list_category').attr('disabled', true)
+            }
+
+
+            $('#list_category').val(data.category_id);
+
+            // Set Food Bundle
+            tblDietFoodBundleItem.clear().draw();
+
+            if (data.diet_items && data.diet_items.length > 0) {
+
+                let dietItems = data.diet_items
+
+                // arrange diet items by food time 24HR format
+                let newDietItems = dietItems.sort((a, b) => {
+                    return a.time - b.time
+                })
+
+                for (let i = 0; i < newDietItems.length; i++) {
+                    const tempDietItems = newDietItems[i];
+
+                    let foodBundle = 'N/A',
+                        foodTime = 'N/A'
+
+                    if (tempDietItems.food_bundle) {
+                        foodBundle = `<a href="food-bundle.html?menu_item=menu_food_bundle&bundle_name=${encodeURIComponent(tempDietItems.food_bundle.bundle_name)}" target="_blank" style="text-decoration: none;">${tempDietItems.food_bundle.bundle_name}</a>` || 'N/A'
+                    }
+
+                    if (tempDietItems.diet_items_time_info) {
+                        foodTime = tempDietItems.diet_items_time_info.food_time || 'N/A'
+                    }
+
+                    let actionHTML = `<button class="btn btn-icon btn-info btn-icon-style-1"><span class="btn-icon-wrap" onclick=viewBundle("${tempDietItems._id}")><i class="icon-eye"></i></span></button>
+                    <button class="btn btn-icon btn-danger btn-icon-style-1"><span class="btn-icon-wrap" onclick=removeDietItem("${tempDietItems._id}")><i class="icon-trash"></i></span></button>`;
+
+                    tblDietFoodBundleItem.row.add([i + 1, foodBundle, foodTime, (t24to12(tempDietItems.time)), actionHTML]).draw();
+                }
+
+
+                tblDietFoodBundleItem = initFoodBundleItemTable()
+                // disable table ordering
+                // tblDietFoodBundleItem.order([3, 'asc']).draw();
+
+
+
+            }
+        }).fail(error => {
+
+            return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+        })
+    }
+
+    // Create Diet Plan
+    function createDietPlan(element) {
+        let plan_name = $('#txt_plan_name').val(),
+            category_id = $('#list_category').val(),
+            food_type = $('#list_food_type').val(),
+            days = $('#txt_day_duration').val(),
+            previousID = $('#list_previous_diet').val()
+
+        let payload = {
+            diet_id: searchParams.get('diet_plan_id'),
+            plan_name,
+            category_id,
+            food_type,
+            days
+        }
+
+        if (!plan_name) {
+            return toastError('Required', 'Plan Name is required')
+        }
+        if (!category_id) {
+            return toastError('Required', 'Please select Category')
+        }
+        if (!food_type) {
+            return toastError('Required', 'Please select food type')
+        }
+        if (!days || isNaN(parseInt(days))) {
+            return toastError('Required', 'Day duration is required')
+        }
+
+        if (previousID) {
+            payload.previous_diet_id = previousID
+        }
+
+        return $.post({
+            url: BASE_URL + '/diet/create',
+            contentType: 'application/json',
+            data: JSON.stringify(payload),
+            success: (result) => {
+                toastSuccess('Success', 'Diet item updated successfully')
+                let id = result.data._id
+                return window.location.href = "diet-create.html?menu_item=menu_diet&diet_plan_id=" + id;
+            },
+            error: (error) => {
+                $(element).removeAttr('disabled');
+                return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+            },
+            beforeSend: () => {
+                $(element).attr('disabled', true)
+            },
+            complete: () => {
+                $(element).removeAttr('disabled')
+            }
+        });
+    }
+
+    // View Diet Items
+    function viewBundle(dietItemId) {
+        $('#list_modal_food_time,#list_modal_food_bundle').html(`<option value="" hidden selected>Choose</option>`)
+
+        if (!dietItemId || !diet || !diet.diet_items || diet.diet_items.length == 0) {
+            return
+        }
+
+        let dietItem = diet.diet_items.filter(data => data._id == dietItemId)[0]
+
+        if (dietItem.time) {
+            $('#txt_modal_time').val(dietItem.time)
+        }
+
+        // list_modal_food_time
+        if (dietItem.food_bundle_time_info && dietItem.food_bundle_time_info.food_time) {
+            $('#list_modal_food_time').val(dietItem.food_bundle_time_info.food_time)
+        }
+
+        if (foodTimeResult.length > 0) {
+            let foodTime = foodTimeResult;
+
+            for (let i = 0; i < foodTime.length; i++) {
+                let tempTime = foodTime[i]
+                $('#list_modal_food_time').append(`<option value="${tempTime._id}">${tempTime.food_time}</option>`)
+
+                if (dietItem.food_time_id == tempTime._id) {
+                    $('#list_modal_food_time').val(dietItem.food_time_id)
+                }
+            }
+        }
+
+        // Food Bundle
+        if (foodBundleResult.length > 0) {
+            let foodBundles = foodBundleResult;
+
+            for (let i = 0; i < foodBundles.length; i++) {
+                let tempBundle = foodBundles[i]
+                $('#list_modal_food_bundle').append(`<option value="${tempBundle._id}">${tempBundle.bundle_name}</option>`)
+
+                if (dietItem.food_bundle_id == tempBundle._id) {
+                    $('#list_modal_food_bundle').val(dietItem.food_bundle_id)
+                }
+            }
+        }
+
+        // Action Button
+        let actionHTML = `
+        <button type="button" class="btn btn-primary" onclick=updateDietItem("${dietItemId}",this)><i class="far fa-check-circle"></i> Update</button>
+        <button type="button" class="btn btn-primary" onclick=removeDietItem("${dietItemId}",this)><i class="fas fa-trash"></i> Remove</button>`
+
+        $('#div_modal_button').html(actionHTML)
+
+        $('#modal_time').modal('show');
+
+    }
+
+    // Open Add Bundle
+    function openAddFoodBundle(bundle_id, bundle_name) {
+        $('#list_modal_food_time,#list_modal_food_bundle').html(`<option value="" hidden selected>Choose</option>`)
+
+        if (foodTimeResult.length > 0) {
+            let foodTime = foodTimeResult;
+
+            for (let i = 0; i < foodTime.length; i++) {
+                let tempTime = foodTime[i]
+                $('#list_modal_food_time').append(`<option value="${tempTime._id}">${tempTime.food_time}</option>`)
+            }
+        }
+
+        // Food Bundle
+        // if (foodBundleResult.length > 0) {
+        //     let foodBundles = foodBundleResult;
+
+        //     for (let i = 0; i < foodBundles.length; i++) {
+        //         let tempBundle = foodBundles[i]
+        //         $('#list_modal_food_bundle').append(`<option value="${tempBundle._id}">${tempBundle.bundle_name}</option>`)
+        //     }
+        // }
+
+        $('#exampleModalLongTitle').text(`Food Bundle Item: ${bundle_name}`)
+        $('#list_modal_food_bundle').val(bundle_id)
+
+        // Action Button
+        let actionHTML = `
+        <button type="button" class="btn btn-primary" onclick=addDietItem(this)><i class="fas fa-plus"></i> Add </button>`
+
+        $('#div_modal_button').html(actionHTML)
+
+        $('#modal_time').modal('show');
+    }
+
+    // Add Diet Item
+    function addDietItem(element) {
+        let payload = {
+            diet_id: searchParams.get('diet_plan_id')
+        }
+
+        if ($('#list_modal_food_time').val()) {
+            payload.food_time_id = $('#list_modal_food_time').val()
+        } else {
+            return toastError('Required', 'Please Select Food Time')
+        }
+
+        if ($('#list_modal_food_bundle').val()) {
+            payload.food_bundle_id = $('#list_modal_food_bundle').val()
+        } else {
+            return toastError('Required', 'Please Select Food Bundle')
+        }
+
+        if ($('#txt_modal_time').val()) {
+            payload.time = $('#txt_modal_time').val()
+        } else {
+            return toastError('Required', 'Please Enter Time (HH:MM)')
+        }
+
+        return $.post({
+            url: BASE_URL + '/diet/add-item',
+            contentType: 'application/json',
+            data: JSON.stringify(payload),
+            success: (result) => {
+                toastSuccess('Success', 'Diet Item added successfully')
+                $('#modal_time').modal('hide');
+                return getDiet()
+            },
+            error: (error) => {
+                $(element).removeAttr('disabled');
+                return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+            },
+            beforeSend: () => {
+                $(element).attr('disabled', true)
+            },
+            complete: () => {
+                $(element).removeAttr('disabled')
+            }
+        });
+    }
+
+    // Update Diet Item
+    function updateDietItem(diet_plan_item_id, element) {
+
+        let payload = {
+            diet_plan_item_id
+        }
+
+        if ($('#list_modal_food_time').val()) {
+            payload.food_time_id = $('#list_modal_food_time').val()
+        }
+        if ($('#list_modal_food_bundle').val()) {
+            payload.food_bundle_id = $('#list_modal_food_bundle').val()
+        }
+
+        if ($('#txt_modal_time').val()) {
+            payload.time = $('#txt_modal_time').val()
+        } else {
+            return toastError('Required', 'Please Enter Time (HH:MM)')
+        }
+
+        return $.post({
+            url: BASE_URL + '/diet/update-item',
+            contentType: 'application/json',
+            data: JSON.stringify(payload),
+            success: (result) => {
+                toastSuccess('Success', 'Diet item updated successfully')
+                $('#modal_time').modal('hide');
+                return getDiet()
+            },
+            error: (error) => {
+                $(element).removeAttr('disabled');
+                return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+            },
+            beforeSend: () => {
+                $(element).attr('disabled', true)
+            },
+            complete: () => {
+                $(element).removeAttr('disabled')
+            }
+        });
+    }
+
+    // Remove Diet Item
+    function removeDietItem(diet_plan_item_id, element) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This action can not be undo",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Remove'
+        }).then((result) => {
+            if (result.value) {
+                $.post({
+                    url: BASE_URL + '/diet/remove-item',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        diet_plan_item_id
+                    }),
+                    success: (result) => {
+                        toastSuccess('Success', 'Diet item removed successfully')
+                    },
+                    error: (error) => {
+                        $(element).removeAttr('disabled');
+                        return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+                    },
+                    beforeSend: () => {
+                        $(element).attr('disabled', true)
+                    },
+                    complete: () => {
+                        $(element).removeAttr('disabled')
+                        return getDiet()
+                    }
+                });
+            }
+        });
+    }
+
+    // Update Diet Plan
+    function updateDietPlan(element) {
+        let plan_name = $('#txt_plan_name').val(),
+            category_id = $('#list_category').val(),
+            food_type = $('#list_food_type').val(),
+            days = $('#txt_day_duration').val(),
+            previousID = $('#list_previous_diet').val()
+
+        let payload = {
+            diet_id: searchParams.get('diet_plan_id'),
+            plan_name,
+            category_id,
+            food_type,
+            days
+        }
+
+        if (!plan_name) {
+            return toastError('Required', 'Plan Name is required')
+        }
+        if (!category_id) {
+            return toastError('Required', 'Please select Category')
+        }
+        if (!food_type) {
+            return toastError('Required', 'Please select food type')
+        }
+        if (!days || isNaN(parseInt(days))) {
+            return toastError('Required', 'Day duration is required')
+        }
+
+        if (previousID) {
+            payload.previous_diet_id = previousID
+        }
+
+        return $.post({
+            url: BASE_URL + '/diet/update',
+            contentType: 'application/json',
+            data: JSON.stringify(payload),
+            success: (result) => {
+                toastSuccess('Success', 'Diet item updated successfully')
+                return getDiet()
+            },
+            error: (error) => {
+                $(element).removeAttr('disabled');
+                return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+            },
+            beforeSend: () => {
+                $(element).attr('disabled', true)
+            },
+            complete: () => {
+                $(element).removeAttr('disabled')
+            }
+        });
+    }
+
+    var selectedTime;
+    function filterFoodBundleByTime() {
+        selectedTime = $('#list_food_bundle_time').val();
+        setFoodBundleTable(foodBundleResult.filter(item => item.food_time_id == selectedTime));
+    }
+</script>
+
+</html>

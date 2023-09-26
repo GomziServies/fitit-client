@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Dashboard - FWG</title>
+    <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="dist/img/favi.ico">
+    <link rel="icon" href="dist/img/favi.ico" type="image/x-icon">
+
+    <!-- Morris Charts CSS -->
+    <link href="dist/vendors4/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+    <!-- Toggles CSS -->
+    <link href="dist/vendors4/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="dist/vendors4/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+
+    <!-- Toastr CSS -->
+    <link href="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Pace -->
+    <link rel="stylesheet" href="dist/vendors4/pace-progress/themes/blue/pace-theme-minimal.css">
+
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="dist/css/fontawesome-free/css/all.min.css">
+</head>
+
+<body>
+    <!-- HK Wrapper -->
+    <div class="hk-wrapper hk-vertical-nav">
+
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+            <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i
+                    class="ion ion-ios-menu"></i></a>
+            <a class="navbar-brand" href="admin.html">
+                <img class="brand-img d-inline-block mr-5" src="dist/img/fitit-logo.png" alt="brand" width="10%" />
+            </a>
+            <ul class="navbar-nav hk-navbar-content" id="ui_header_profile"></ul>
+        </nav>
+        <!-- /Top Navbar -->
+
+        <!--Vertical Nav-->
+        <div id="navHTML"></div>
+        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+        <!--/Vertical Nav-->
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper">
+            <!-- Container -->
+            <div class="container-fluid mt-sm-30 mt-15">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-md-5 pr-1">
+                                <div class="card p-3" style="background-color: #C8DBFF;">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <h4 style="color: #367BFF;">Hi, Welcome Back </h4>
+                                            <h4 class="mt-5" id="dashboard_AdminName"></h4>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="img-admin">
+                                                <img src="dist/img/admin-vector.png" class="img-fluid" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="card-counter primary">
+                                    <span class="count-numbers" id="totalAmountDiv">₹ 15,000/-</span>
+                                    <span class="count-name">Total Income</span>
+                                    <i class="fas fa-rupee-sign"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-3 px-1">
+                                <div class="card-counter info">
+                                    <span class="count-numbers" id="totalCostAmount">148</span>
+                                    <span class="count-name">Total Cost</span>
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card-counter">
+                                            <span class="count-numbers text-dark" id="totalDueAmountDiv">205</span>
+                                            <span class="count-name text-primary" style="opacity: .8;">Total Due
+                                                Amount
+                                            </span>
+                                            <i class="fas fa-hand-holding-usd" style="color: #00be16;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card-counter">
+                                            <span class="count-numbers text-dark"
+                                                id="totalPaidAmountDiv">₹1,15,200/-</span>
+                                            <span class="count-name text-primary" style="opacity: .8;">Paid
+                                                Amount</span>
+                                            <i class="fas fa-wallet" style="color: #a424ff;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card-counter">
+                                            <span class="count-numbers text-dark" id="totalLead">577</span>
+                                            <span class="count-name text-primary" style="opacity: .8;">Total Leads<p
+                                                    style="font-size: 12px;margin-left: 45px; color: #000;">Per
+                                                    Month</p>
+                                            </span>
+                                            <i class="fas fa-users" style="color: #196dff;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-counter mt-15">
+                                    <div class="row align-items-center justify-content-between">
+                                        <div class="col-md-4 ml-3">
+                                            <h5>Due Amount</h5>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="row justify-content-end">
+                                                <div class="mr-3">
+                                                    <div id="reportrange"
+                                                        style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                                                        <i class="fa fa-calendar" style="font-size: 16px;"></i>&nbsp;
+                                                        <span></span> <i class="fa fa-caret-down"
+                                                            style="font-size: 16px;"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mt-20">
+                                        <div class="table-wrap tbl-font">
+                                            <table id="tbl_invoice_user" class="table table-bordered table-striped"
+                                                style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>User Name</th>
+                                                        <th>Product Name</th>
+                                                        <th>Purchase Date</th>
+                                                        <th>Due Amount</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="text-center">
+                                                        <td colspan="7"><img src="dist/img/loader.gif"
+                                                                style="width:30px">
+                                                        </td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>User Name</th>
+                                                        <th>Product Name</th>
+                                                        <th>Purchase Date</th>
+                                                        <th>Due Amount</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="card card-counter mt-15">
+                                    <div class="userData">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6">
+                                                <h6 id="totalUserChart" class="border-3 border-left pl-2 border-primary"
+                                                    style="background: #f5e7ff; width: 160px; padding: 5px;">
+                                                    Total User Chart
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 text-center">
+                                            <div id="totalExpense" class="mt-4">
+                                                <canvas id="expenseChart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="invoiceData" style="display: none;">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-12 mb-3">
+                                                <h6 id="totalUserChart" class="border-3 border-left pl-2 border-primary"
+                                                    style="background: #f5e7ff; width: 160px; padding: 5px;">
+                                                    Total Plan Chart
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 text-center mt-3">
+                                            <div>
+                                                <canvas id="invoiceChart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 mt-2">
+                                            <select id="dataDropdown"
+                                                style="border-radius: 5px; border: 3px solid #c676ff;"
+                                                onchange="toggleData()">
+                                                <option value="expenseData">Expense Data</option>
+                                                <option value="invoiceData">Invoice Data</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <h6 class="" id="totalAmount"></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Row -->
+            </div>
+            <!-- /Container -->
+
+            <!-- Footer -->
+            <div class="hk-footer-wrap container">
+                <footer class="footer">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <p>Copyright & Copy
+                                <a href="https://gcsconsultant.com/digital-marketing-agency.html" target="_blank">FG
+                                    Digital</a>&nbsp;Powered by<a href="https://gcsconsultant.com" target="_blank"></a>
+                            </p>
+                        </div>
+
+                    </div>
+                </footer>
+            </div>
+            <!-- /Footer -->
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /HK Wrapper -->
+
+    <!-- jQuery -->
+    <script src="dist/vendors4/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="dist/vendors4/popper.js/dist/umd/popper.min.js"></script>
+    <script src="dist/vendors4/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Slimscroll JavaScript -->
+    <script src="dist/js/jquery.slimscroll.js"></script>
+
+    <!-- Fancy Dropdown JS -->
+    <script src="dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- FeatherIcons JavaScript -->
+    <script src="dist/js/feather.min.js"></script>
+
+    <!-- Toggles JavaScript -->
+    <script src="dist/vendors4/jquery-toggles/toggles.min.js"></script>
+    <script src="dist/js/toggle-data.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+    <script src="dist/js/toast-data.js"></script>
+
+    <!-- Data Table JavaScript -->
+    <script src="dist/vendors4/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="dist/vendors4/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="dist/vendors4/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="dist/vendors4/jszip/dist/jszip.min.js"></script>
+    <script src="dist/vendors4/pdfmake/build/pdfmake.min.js"></script>
+    <script src="dist/vendors4/pdfmake/build/vfs_fonts.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="dist/vendors4/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="dist/js/dataTables-data.js"></script>
+
+    <!-- Counter Animation JavaScript -->
+    <script src="dist/vendors4/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="dist/vendors4/jquery.counterup/jquery.counterup.min.js"></script>
+
+    <!-- Select2 JavaScript -->
+    <script src="dist/vendors4/select2/dist/js/select2.full.min.js"></script>
+    <!-- <script src="dist/js/select2-data.js"></script> -->
+
+    <!-- Morris Charts JavaScript -->
+    <script src="dist/vendors4/raphael/raphael.min.js"></script>
+    <script src="dist/vendors4/morris.js/morris.min.js"></script>
+
+    <!-- Easy pie chart JS -->
+    <script src="dist/vendors4/easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+
+    <!-- Apex JavaScript -->
+    <script src="dist/vendors4/apexcharts/dist/apexcharts.min.js"></script>
+
+    <!-- EChartJS JavaScript -->
+    <script src="dist/vendors4/echarts/dist/echarts-en.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Init JavaScript -->
+    <script src="dist/js/init.js"></script>
+    <script src="dist/js/dashboard2-data.js"></script>
+
+    <!-- Sweet-alert -->
+    <script src="dist/sweetalert2.js"></script>
+
+    <!-- Pace -->
+    <script src="dist/vendors4/pace-progress/pace.min.js"></script>
+
+    <!--Nestable js -->
+    <script src="dist/vendors4/nestable2/dist/jquery.nestable.min.js"></script>
+
+    <!-- Custom Script -->
+    <script src="dist/app.js"></script>
+    <script src="dist/menu-items.js"></script>
+
+    <!-- Authorization -->
+    <script src="dist/authorization.js"></script>
+
+    <!-- DatePiker -->
+    <script src="dist/vendors4/moment/min/moment.min.js"></script>
+    <script src="dist/vendors4/daterangepicker/daterangepicker.js"></script>
+    <link rel="stylesheet" href="dist/vendors4/daterangepicker/daterangepicker.css">
+
+    <script>
+
+        //Auth Checking
+        if (localStorage.getItem("authorization")) {
+            if (localStorage.getItem("authorization") == null) {
+                window.location.href = 'login.html'
+            }
+
+            $.get({
+                url: `${BASE_URL}/get-profile`,
+                dataType: 'json',
+                headers: {
+                    "authorization": `${localStorage.getItem("authorization")}`,
+                },
+                success: (result) => {
+                    var result = result.data;
+                    localStorage.setItem('access_list', JSON.stringify(result.access_list));
+                    localStorage.setItem('type', JSON.stringify(result.type));
+
+                    $("#dashboard_AdminName").html(result.full_name)
+                },
+                error: (error) => {
+                    if (error.responseJSON) {
+                        if (error.responseJSON.status == 401)
+                            toastrError('Error', 'Please login again');
+                    }
+
+                    return logout();
+                }
+            });
+        } else {
+            window.location.href = 'login.html'
+        }
+
+        $(document).ready(() => {
+            // Initialize the data table
+            tblInvoice = $('#tbl_invoice_user').DataTable({
+                destroy: true,
+                responsive: true,
+                lengthMenu: [5, 10, 25, 50, 75, 100, 200, 500, 800, 1000],
+                pageLength: 5,
+                paging: true, // Disable pagination
+                searching: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search...",
+                    "sLengthMenu": "Show _MENU_ Records",
+                },
+                "dom": '<"row"<"col-8"l><"col-4"f><"col-12"rt><"col-12">><"row"<"col"i><"col"p>><"clear">',
+                columns: [
+                    { width: "1%" },
+                    { width: "19%" },
+                    { width: "20%" },
+                    { width: "20%" },
+                    { width: "20%" },
+                    { width: "20%" },
+                ],
+            });
+
+            // Fetch and populate data after setting up filters
+            getInvoiceDetails();
+
+            // Initialize date range picker and apply the initial date filter
+            $('#reportrange').daterangepicker({
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment(),
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, applyDateFilter);
+            applyDateFilter();
+        });
+
+        // Initialize monthlyInvoiceTotals as an empty object
+        const monthlyInvoiceTotals = {};
+
+        function getInvoiceDetails() {
+            $.get({
+                url: `${BASE_URL}/invoice/get`,
+                success: (result) => {
+                    const data = result.data;
+                    tblInvoice.clear().draw();
+                    let invoiceIndex = 1;
+
+                    // Initialize total amounts variables
+                    let totalPaidAmount = 0;
+                    let totalAmount = 0;
+                    let totalDueAmount = 0;
+
+                    for (let i = 0; i < data.length; i++) {
+                        const tempUser = data[i];
+                        // Extract month and year from the invoice date
+                        const invoiceDate = moment(tempUser.date, 'YYYY-MM-DD');
+                        const monthYearKey = invoiceDate.format('YYYY-MM');
+
+                        // Initialize the monthly total if it doesn't exist
+                        if (!monthlyInvoiceTotals[monthYearKey]) {
+                            monthlyInvoiceTotals[monthYearKey] = 0;
+                        }
+
+                        const paidPayment = Number(tempUser.paidPayment);
+                        const totalPayment = Number(tempUser.totalPayment);
+                        const dueAmount = totalPayment - paidPayment;
+
+                        totalPaidAmount += paidPayment;
+                        totalAmount += totalPayment;
+                        totalDueAmount += dueAmount;
+
+                        // Add the total payment to the monthly total
+                        monthlyInvoiceTotals[monthYearKey] += totalPayment;
+
+                        const action = `<div class="d-flex">
+                    <button type="button" class="btn mr-1 btn-outline-success" title="Send WhatsApp Reminder" onclick="sendWhatsAppReminder('${tempUser.mobile}', '${tempUser.fullName}', '${dueAmount}')"> Send</button>
+                </div>`;
+
+                        // Filter by date range using moment.js
+                        const startDate = $('#reportrange').data('daterangepicker').startDate;
+                        const endDate = $('#reportrange').data('daterangepicker').endDate;
+
+                        if (invoiceDate.isBetween(startDate, endDate, null, '[]')) {
+                            tblInvoice.row.add([
+                                invoiceIndex,
+                                `${tempUser.fullName || ''}`,
+                                tempUser.productName,
+                                tempUser.date || "N/A",
+                                dueAmount,
+                                action
+                            ]).draw();
+                            invoiceIndex++;
+                        }
+                    }
+
+                    // Format the amounts as Indian rupee style
+                    const formattedTotalPaidAmount = formatAmount(totalPaidAmount);
+                    const formattedTotalAmount = formatAmount(totalAmount);
+                    const formattedTotalDueAmount = totalDueAmount < 0 ? "No due pending" : formatAmount(totalDueAmount);
+
+                    // Update the respective div elements with the calculated sums
+                    $('#totalPaidAmountDiv').text('₹' + formattedTotalPaidAmount + '/-');
+                    $('#totalAmountDiv').text('₹' + formattedTotalAmount + '/-');
+                    $('#totalDueAmountDiv').text('₹' + formattedTotalDueAmount + '/-');
+
+                    // Create a chart using the monthly invoice totals
+                    createInvoiceLineChart(monthlyInvoiceTotals);
+                },
+                error: (error) => {
+                    return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+                }
+            });
+        }
+
+        // Initialize a variable to store the chart instance
+        let invoiceChartInstance = null;
+
+        function createInvoiceLineChart(monthlyInvoiceTotals) {
+            console.log(monthlyInvoiceTotals);
+            const labels = Object.keys(monthlyInvoiceTotals);
+            const data = Object.values(monthlyInvoiceTotals);
+
+            // Assuming you have a canvas element with id "invoiceChart" in your HTML
+            const ctx = document.getElementById('invoiceChart').getContext('2d');
+
+            // Destroy the existing chart if it exists
+            if (invoiceChartInstance) {
+                invoiceChartInstance.destroy();
+            }
+
+            // Create a new chart and store its instance in the variable
+            invoiceChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Monthly Invoice',
+                        data: data,
+                        fill: false,
+                        borderColor: 'rgb(90 64 255)', // Customize the line color
+                        borderWidth: 2,
+                    }],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function (value, index, values) {
+                                    return `₹ ${value}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function formatAmount(amount) {
+            return new Intl.NumberFormat('en-IN').format(amount);
+        }
+
+        function applyDateFilter(start, end) {
+            const startDate = start || moment().subtract(29, 'days');
+            const endDate = end || moment();
+            $('#reportrange span').html(startDate.format('MMMM D, YYYY') + ' - ' + endDate.format('MMMM D, YYYY'));
+
+            getInvoiceDetails();
+        }
+
+        $(document).ready(() => {
+            getExpenseAmount();
+            getLeadDetails();
+        });
+
+        function getExpenseAmount() {
+            // Calculate the start date of the current month
+            const currentDate = new Date();
+            const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+
+            // Format the start date and end date in YYYY-MM-DD format
+            const formattedStartDate = formatDateToYYYYMMDD(firstDayOfMonth);
+            const formattedEndDate = formatDateToYYYYMMDD(currentDate);
+
+            $.get({
+                url: `${BASE_URL}/expense/get`,
+                data: {
+                    startDate: formattedStartDate,
+                    endDate: formattedEndDate,
+                },
+                success: (result) => {
+                    const totalData = result.data;
+
+                    let totalAmount = 0;
+                    const monthlyData = {}; // To store expenses by month
+
+                    for (let i = 0; i < totalData.length; i++) {
+                        const expense = totalData[i];
+
+                        const expenseAmount = Number(expense.expenseAmount);
+                        totalAmount += expenseAmount;
+
+                        const expenseDate = new Date(expense.date);
+                        const monthKey = `${expenseDate.getFullYear()}-${String(expenseDate.getMonth() + 1).padStart(2, '0')}`;
+
+                        // Add the expense to the monthly data
+                        if (!monthlyData[monthKey]) {
+                            monthlyData[monthKey] = 0;
+                        }
+                        monthlyData[monthKey] += expenseAmount;
+                    }
+
+                    // Format the total amount as Indian rupee style
+                    const formattedTotalAmount = formatAmounts(totalAmount);
+
+                    // Create a line chart using monthly data
+                    createExpenseLineChart(monthlyData);
+
+                    // Update the total amount in your UI
+                    updateTotalAmount(formattedTotalAmount);
+                },
+                error: (error) => {
+                    return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+                }
+            });
+        }
+
+        function formatDateToYYYYMMDD(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function createExpenseLineChart(monthlyData) {
+            // Assuming you have a canvas element with id "expenseChart" in your HTML
+            const ctx = document.getElementById('expenseChart').getContext('2d');
+
+            const labels = Object.keys(monthlyData);
+            const data = Object.values(monthlyData);
+            const dataWithRupeeSign = data.map(amount => `₹ ${amount}`);
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Monthly Expense Amount',
+                        data: data,
+                        fill: false,
+                        borderColor: 'rgb(90 64 255)', // Customize the line color
+                        borderWidth: 2,
+                    }],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function (value, index, values) {
+                                    return `₹ ${value}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function formatAmounts(amount) {
+            // Format the amount as Indian rupee style
+            const formattedAmount = amount.toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
+
+            // Remove the decimal part and add a hyphen
+            const formattedAmountWithHyphen = formattedAmount.replace(/\.00$/, '') + '/-';
+
+            return formattedAmountWithHyphen;
+        }
+
+        function updateTotalAmount(amount) {
+            $('#totalCostAmount').text(amount);
+        }
+
+        function getLeadDetails() {
+            $.get({
+                url: BASE_URL + `/lead/get-lead`,
+                success: (result) => {
+                    var result = result.data;
+                    var leadAmount = result.length
+                    $('#totalLead').text(leadAmount)
+                },
+                error: (error) => {
+                    return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+                }
+            });
+        }
+
+        function sendWhatsAppReminder(mobile, fullName, dueAmount) {
+            if (!mobile) {
+                // Handle missing mobile number
+                swal.fire({
+                    title: 'Error',
+                    text: 'Invalid Mobile Number is missing',
+                    icon: 'error'
+                });
+                return;
+            }
+
+            if (!dueAmount) {
+                // Handle missing due amount
+                swal.fire({
+                    title: 'Error',
+                    text: 'Due amount is missing',
+                    icon: 'error'
+                });
+                return;
+            }
+
+            const message = `📢 *Payment Reminder* 📢
+
+Hello ${fullName},
+
+This is a friendly reminder that there is an outstanding payment of ₹${dueAmount}/- due on your account. 💰💳
+
+Please ensure to make the payment at your earliest convenience. If you have any questions or concerns regarding this invoice, feel free to reach out to us. 🤝📩
+
+Thank you for your prompt attention to this matter. We value your business! 🙏
+
+Best regards`;
+
+            const encodedMessage = encodeURIComponent(message);
+
+            const whatsappMessage = `https://api.whatsapp.com/send?phone=${mobile}&text=${encodedMessage}`;
+
+            // Open WhatsApp in a new tab with the pre-filled message
+            window.open(whatsappMessage, '_blank');
+
+            // Show success message
+            swal.fire({
+                title: 'Success',
+                text: 'Reminder message sent successfully!',
+                icon: 'success'
+            });
+        }
+
+        function toggleData() {
+            const dropdown = document.getElementById('dataDropdown');
+            const selectedValue = dropdown.value;
+
+            if (selectedValue === 'expenseData') {
+                document.querySelector('.userData').style.display = 'block';
+                document.querySelector('.invoiceData').style.display = 'none';
+            } else if (selectedValue === 'invoiceData') {
+                document.querySelector('.userData').style.display = 'none';
+                document.querySelector('.invoiceData').style.display = 'block';
+                if (selectedValue === 'invoiceData') {
+                    createInvoiceLineChart();
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

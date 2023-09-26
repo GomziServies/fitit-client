@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Total Sales</title>
+    <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="dist/img/favi.ico">
+    <link rel="icon" href="dist/img/favi.ico" type="image/x-icon">
+
+    <!-- Morris Charts CSS -->
+    <link href="dist/vendors4/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+    <!-- Toggles CSS -->
+    <link href="dist/vendors4/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="dist/vendors4/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+
+    <!-- Toastr CSS -->
+    <link href="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Pace -->
+    <link rel="stylesheet" href="dist/vendors4/pace-progress/themes/blue/pace-theme-minimal.css">
+
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="dist/css/fontawesome-free/css/all.min.css">
+</head>
+
+<body>
+    <!-- HK Wrapper -->
+    <div class="hk-wrapper hk-vertical-nav">
+
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+            <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i
+                    class="ion ion-ios-menu"></i></a>
+            <a class="navbar-brand" href="admin.html">
+                <img class="brand-img d-inline-block mr-5" src="fitit-logo.png" alt="brand" />&nbsp; Fitness With
+                Gomzi
+            </a>
+            <ul class="navbar-nav hk-navbar-content" id="ui_header_profile"></ul>
+        </nav>
+        <!-- /Top Navbar -->
+
+        <!--Vertical Nav-->
+        <div id="navHTML"></div>
+        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+        <!--/Vertical Nav-->
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper mt-25">
+            <!-- Container -->
+            <div class="container-fluid">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <!-- Wrapper -->
+                                <section class="hk-sec-wrapper">
+                                    <div class="row justify-content-between">
+                                        <div class="col-md-6 mb-2">
+                                            <h3>Update Expenses</h3>
+                                        </div>
+                                        <div class="col-md-12 mt-md-30">
+                                            <div>
+                                                <form id="expense_form">
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <div class="form-outline">
+                                                                <label class="form-label" for="expense_number">Expenses
+                                                                    No.</label>
+                                                                <input type="number" id="expense_number"
+                                                                    placeholder="Enter Expense Number"
+                                                                    class="form-control" required />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-outline">
+                                                                <label class="form-label" for="txt_Date">Date</label>
+                                                                <input type="date" required placeholder="Enter Date"
+                                                                    id="txt_Date" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <div class="form-outline">
+                                                                <label class="form-label" for="expensePMethod">Payment
+                                                                    Method</label>
+                                                                <select name="" id="expensePMethod" class="form-control"
+                                                                    required>
+                                                                    <option hidden>Select Payment Method</option>
+                                                                    <option value="Online">Online</option>
+                                                                    <option value="Cash">Cash</option>
+                                                                    <option value="Cheque">Cheque</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-outline">
+                                                                <label class="form-label" for="expense_name">Expenses
+                                                                    category</label>
+                                                                <select name="" id="expense_name" required
+                                                                    class="form-control">
+                                                                    <option hidden>Select Expense Category</option>
+                                                                    <option value="Ads">Ads</option>
+                                                                    <option value="Counselling">Counselling</option>
+                                                                    <option value="Electricity">Electricity</option>
+                                                                    <option value="Salary">Salary</option>
+                                                                    <option value="Petrol">Petrol</option>
+                                                                    <option value="Transport">Transport</option>
+                                                                    <option value="Rent">Rent</option>
+                                                                    <option value="Fix cost">Fix cost</option>
+                                                                    <option value="Equipment">Equipment</option>
+                                                                    <option value="Miscellaneous">Miscellaneous</option>
+                                                                    <option value="Others">Others</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <div class="form-outline">
+                                                                <label class="form-label" for="item_name">Item
+                                                                    Name</label>
+                                                                <input type="text" placeholder="Enter Item Name"
+                                                                    class="form-control" required id="item_name" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-outline">
+                                                                <label class="form-label" for="expense_amount">Total
+                                                                    Amount</label>
+                                                                <input type="number" id="expense_amount"
+                                                                    placeholder="Enter your Expenses Amount"
+                                                                    class="form-control" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-outline mb-2">
+                                                        <label class="form-label" for="expense_notes">Notes</label>
+                                                        <textarea class="form-control" required
+                                                            placeholder="Enter Notes" id="expense_notes"
+                                                            rows="2"></textarea>
+                                                    </div>
+                                                    <div class="row justify-content-end">
+                                                        <div class="col-lg-3">
+                                                            <button id="btn_add" type="button"
+                                                                class="btn btn-primary btn-block mb-4 mt-15">
+                                                                Update Expenses</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <!-- /Row -->
+                    </div>
+                    <!-- /Container -->
+
+                    <!-- Footer -->
+                    <div class="hk-footer-wrap container">
+                        <footer class="footer">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <p>Copyright &copy
+                                        <a href="https://gcsconsultant.com/digital-marketing-agency.html"
+                                            target="_blank">FG Digital</a>&nbsp;Powered
+                                        by<a href="https://gcsconsultant.com" target="_blank"></a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </footer>
+                    </div>
+                    <!-- /Footer -->
+                </div>
+                <!-- /Main Content -->
+
+            </div>
+            <!-- /HK Wrapper -->
+
+            <!-- jQuery -->
+            <script src="dist/vendors4/jquery/dist/jquery.min.js"></script>
+
+            <!-- Bootstrap Core JavaScript -->
+            <script src="dist/vendors4/popper.js/dist/umd/popper.min.js"></script>
+            <script src="dist/vendors4/bootstrap/dist/js/bootstrap.min.js"></script>
+
+            <!-- Slimscroll JavaScript -->
+            <script src="dist/js/jquery.slimscroll.js"></script>
+
+            <!-- Fancy Dropdown JS -->
+            <script src="dist/js/dropdown-bootstrap-extended.js"></script>
+
+            <!-- FeatherIcons JavaScript -->
+            <script src="dist/js/feather.min.js"></script>
+
+            <!-- Toggles JavaScript -->
+            <script src="dist/vendors4/jquery-toggles/toggles.min.js"></script>
+            <script src="dist/js/toggle-data.js"></script>
+
+            <!-- Toastr JS -->
+            <script src="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+            <script src="dist/js/toast-data.js"></script>
+
+            <!-- Data Table JavaScript -->
+            <script src="dist/vendors4/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="dist/vendors4/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+            <script src="dist/vendors4/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="dist/vendors4/jszip/dist/jszip.min.js"></script>
+            <script src="dist/vendors4/pdfmake/build/pdfmake.min.js"></script>
+            <script src="dist/vendors4/pdfmake/build/vfs_fonts.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="dist/vendors4/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="dist/js/dataTables-data.js"></script>
+
+            <!-- Counter Animation JavaScript -->
+            <script src="dist/vendors4/waypoints/lib/jquery.waypoints.min.js"></script>
+            <script src="dist/vendors4/jquery.counterup/jquery.counterup.min.js"></script>
+
+            <!-- Select2 JavaScript -->
+            <script src="dist/vendors4/select2/dist/js/select2.full.min.js"></script>
+            <!-- <script src="dist/js/select2-data.js"></script> -->
+
+            <!-- Morris Charts JavaScript -->
+            <script src="dist/vendors4/raphael/raphael.min.js"></script>
+            <script src="dist/vendors4/morris.js/morris.min.js"></script>
+
+            <!-- Easy pie chart JS -->
+            <script src="dist/vendors4/easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+
+            <!-- Apex JavaScript -->
+            <script src="dist/vendors4/apexcharts/dist/apexcharts.min.js"></script>
+
+            <!-- EChartJS JavaScript -->
+            <script src="dist/vendors4/echarts/dist/echarts-en.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <!-- Init JavaScript -->
+            <script src="dist/js/init.js"></script>
+            <script src="dist/js/dashboard2-data.js"></script>
+
+            <!-- Sweet-alert -->
+            <script src="dist/sweetalert2.js"></script>
+
+            <!-- Pace -->
+            <script src="dist/vendors4/pace-progress/pace.min.js"></script>
+
+            <!--Nestable js -->
+            <script src="dist/vendors4/nestable2/dist/jquery.nestable.min.js"></script>
+
+            <!-- Custom Script -->
+            <script src="dist/app.js"></script>
+            <script src="dist/menu-items.js"></script>
+
+            <!-- Authorization -->
+            <script src="dist/authorization.js"></script>
+
+            <!-- DatePiker -->
+            <script src="dist/vendors4/moment/min/moment.min.js"></script>
+            <script src="dist/vendors4/daterangepicker/daterangepicker.js"></script>
+            <link rel="stylesheet" href="dist/vendors4/daterangepicker/daterangepicker.css">
+
+
+            <script>
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const invoiceID = urlParams.get("id");
+                if (urlParams.has("id")) {
+                    if (urlParams.get("id") == '') {
+                        window.location.href = 'user.html'
+                    }
+                }
+                $(document).ready(() => {
+                    getInvoiceDetails()
+                });
+
+                //Getting Invoice data
+                function getInvoiceDetails() {
+                    $.get({
+                        url: `${BASE_URL}/expense/get`,
+                        contentType: 'application/json',
+                        success: (result) => {
+                            var result = result.data;
+                            if (result) {
+                                for (var i = 0; i < result.length; i++) {
+                                    var tempUser = result[i];
+                                    if (tempUser._id == urlParams.get("id")) {
+                                        $('#expense_number').val(tempUser.expense_number || 'N/A');
+                                        $('#txt_Date').val(tempUser.date || 'N/A');
+                                        $('#expensePMethod').val(tempUser.expensePaymentMethod || 'N/A');
+                                        $('#expense_name').val(tempUser.expenseName || 'N/A');
+                                        $('#item_name').val(tempUser.expenseItemName || 'N/A');
+                                        $('#expense_amount').val(tempUser.expenseAmount || 'N/A');
+                                        $('#expense_notes').val(tempUser.expenseNotes || 'N/A');
+                                    }
+                                }
+                            }
+                        },
+                        error: (error) => {
+                            return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+                        }
+                    });
+                }
+
+
+                // Adding Invoice
+                $("#btn_add").click(async () => {
+                    var expensePaymentMethod = $("#expensePMethod").val(),
+                        expenseAmount = $("#expense_amount").val(),
+                        expenseNotes = $("#expense_notes").val()
+                    expenseItemName = $("#item_name").val()
+
+                    if (
+                        !expensePaymentMethod ||
+                        !expenseAmount ||
+                        !expenseNotes ||
+                        !expenseItemName
+                    ) {
+                        return $.toast({
+                            heading: 'Error!',
+                            text: 'only Payment Method, Total Amount, Item Name and Notes this Fields',
+                            position: 'top-right',
+                            loaderBg: '#f21d1d',
+                            class: 'jq-toast-danger',
+                            hideAfter: 3500,
+                            stack: 6,
+                            showHideTransition: 'fade'
+                        });
+                    }
+                    var bodyObject = {
+                        expensePaymentMethod,
+                        expenseAmount,
+                        expenseNotes,
+                        expenseItemName
+                    };
+                    $.post({
+                        url: `${BASE_URL}/expense/update?id=${invoiceID}`,
+                        contentType: 'application/json',
+                        data: JSON.stringify(bodyObject),
+                        success: (result) => {
+                            result = result.data;
+                            swal.fire({
+                                title: 'Successful',
+                                text: 'Expense Update successfully',
+                                icon: 'success',
+                            });
+                        },
+                        error: (error) => {
+                            error = error.responseJSON;
+                            swal.fire({
+                                title: 'Error!',
+                                text: error.message,
+                                icon: 'error',
+                            });
+                        },
+                        beforeSend: () => {
+                            $('#btn_add').attr('disabled', true);
+                        },
+                        complete: () => {
+                            $('#btn_add').removeAttr('disabled');
+                        }
+                    });
+                });
+            </script>
+
+
+</body>
+
+</html>

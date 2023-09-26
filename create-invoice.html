@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Create Invoice</title>
+    <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="dist/img/favi.ico">
+    <link rel="icon" href="dist/img/favi.ico" type="image/x-icon">
+
+    <!-- Morris Charts CSS -->
+    <link href="dist/vendors4/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+    <!-- Toggles CSS -->
+    <link href="dist/vendors4/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="dist/vendors4/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+
+    <!-- Toastr CSS -->
+    <link href="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Pace -->
+    <link rel="stylesheet" href="dist/vendors4/pace-progress/themes/blue/pace-theme-minimal.css">
+
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="dist/css/fontawesome-free/css/all.min.css">
+
+    <style>
+        .invoice {
+            color: #1f1f1f;
+        }
+
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .invoice-header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .invoice-logo img {
+            max-height: 70px;
+        }
+
+        .invoice-details p {
+            margin: 5px 0;
+        }
+
+        .invoice-items table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .invoice-items th,
+        .invoice-items td {
+            border: 1px solid #ccc;
+            padding: 4px;
+        }
+
+        .invoice-items th {
+            background-color: #add900;
+            color: #000;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .invoice-total {
+            text-align: right;
+        }
+
+        .invoice-stamp {
+            text-align: right;
+            margin-top: 40px;
+        }
+
+        .bill-to {
+            background-color: #add900;
+            color: #000;
+            padding: 3px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .bill-name-date p {
+            font-size: 14px;
+        }
+
+        /* Hide print and download PDF buttons when printing */
+        @media print {
+            .invoice {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .print-button,
+            .download-pdf-button {
+                display: none;
+            }
+
+            #create-invoice {
+                display: none;
+            }
+
+            .invoice {
+                width: 300mm;
+                height: 250mm;
+                margin: 0;
+                box-shadow: none;
+            }
+
+            .footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HK Wrapper -->
+    <div class="hk-wrapper hk-vertical-nav">
+
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+            <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i
+                    class="ion ion-ios-menu"></i></a>
+            <a class="navbar-brand" href="admin.html">
+                <img class="brand-img d-inline-block mr-5" src="dist/img/fitit-logo.png" alt="brand" width="10%" />
+            </a>
+            <ul class="navbar-nav hk-navbar-content" id="ui_header_profile"></ul>
+        </nav>
+        <!-- /Top Navbar -->
+
+        <!--Vertical Nav-->
+        <div id="navHTML"></div>
+        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+        <!--/Vertical Nav-->
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper mt-25">
+            <!-- Container -->
+            <div class="container-fluid">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <!-- Wrapper -->
+                                <section class="hk-sec-wrapper">
+                                    <div class="row mt-15">
+                                        <div class="col-md-6" id="create-invoice">
+                                            <h3 class="mb-20">Create Invoice</h3>
+                                            <form id="invoice_form">
+                                                <div class="row mb-3">
+                                                    <div class="col">
+                                                        <div class="form-outline">
+                                                            <label class="form-label" for="txt_InvoiceN">Invoice
+                                                                Number</label>
+                                                            <input type="text" required
+                                                                placeholder="Enter Invoice Number" id="txt_InvoiceN"
+                                                                class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-outline">
+                                                            <label class="form-label" for="txt_Date">Date</label>
+                                                            <input type="date" required placeholder="Enter Date"
+                                                                id="txt_Date" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-outline mb-3">
+                                                    <label class="form-label" for="txt_FullName">Full Name</label>
+                                                    <input type="text" required placeholder="Enter Full Name"
+                                                        id="txt_FullName" class=" form-control" />
+                                                </div>
+                                                <div class="form-outline mb-3">
+                                                    <label class="form-label" for="txt_address">Address</label>
+                                                    <input type="text" required id="txt_address"
+                                                        placeholder="Enter Your Address" class="form-control" />
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col">
+                                                        <div class="form-outline">
+                                                            <label class="form-label" for="txt_mobile">Phone
+                                                                No.</label>
+                                                            <input type="number" required
+                                                                placeholder="Enter your Number" id="txt_mobile"
+                                                                class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-outline">
+                                                            <label class="form-label" for="txt_Email">Email</label>
+                                                            <input type="text" required placeholder="Enter Email"
+                                                                id="txt_Email" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col">
+                                                        <div class="form-outline">
+                                                            <label class="form-label" for="txt_Pname">Plan
+                                                                Name</label>
+                                                            <input type="text" required placeholder="Enter Plan Name"
+                                                                id="txt_Pname" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-outline">
+                                                            <label class="form-label" for="txt_Pmethod">Payment
+                                                                Method</label>
+                                                            <select name="" id="txt_Pmethod" required
+                                                                class="form-control">
+                                                                <option hidden>Select Method</option>
+                                                                <option value="Google Pay">Google Pay</option>
+                                                                <option value="Phone Pay">Phone Pay</option>
+                                                                <option value="Bharat Pay">Bharat Pay</option>
+                                                                <option value="Paytm">Paytm</option>
+                                                                <option value="Freecharg">Freecharg</option>
+                                                                <option value="Amazon pay">Amazon pay</option>
+                                                                <option value="UPI ID Pay">UPI ID Pay</option>
+                                                                <option value="MobikWik">MobikWik</option>
+                                                                <option value="PayU">PayU</option>
+                                                                <option value="Cred">Cred</option>
+                                                                <option value="Paypal">Paypal</option>
+                                                                <option value="Bank Application Pay">Bank Application
+                                                                    Pay</option>
+                                                                <option value="Credit Card">Credit Card</option>
+                                                                <option value="Debit Card">Debit Card</option>
+                                                                <option value="RTGS">RTGS</option>
+                                                                <option value="NEFT">NEFT</option>
+                                                                <option value="Cheque">Cheque</option>
+                                                                <option value="Cash">Cash</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col">
+                                                        <div class="form-outline">
+                                                            <label class="form-label" for="txt_Tpayment">Total
+                                                                Amount</label>
+                                                            <input type="number" required
+                                                                placeholder="Enter Total Amount" id="txt_Tpayment"
+                                                                class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-outline">
+                                                            <label class="form-label" for="txt_Ppayment">Paid
+                                                                Amount</label>
+                                                            <input type="number" required
+                                                                placeholder="Enter Paid Amount" id="txt_Ppayment"
+                                                                class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Message input -->
+                                                <div class="form-outline mb-2">
+                                                    <label class="form-label" for="txt_Inotes">Notes</label>
+                                                    <textarea class="form-control" required placeholder="Enter Notes"
+                                                        id="txt_Inotes" rows="2"></textarea>
+                                                </div>
+                                                <button type="button" class="btn btn-primary btn-block mb-4"
+                                                    id="btn_add">Create
+                                                    Invoice</button>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="text-right">
+                                                <a class="btn-success btn" href="/profile.html"><i
+                                                        class="fas fa-edit"></i> Changes
+                                                    Details</a>
+                                            </div>
+                                            <div id="invoice" class="invoice mt-3">
+                                                <div class="col-md-12 text-center">
+                                                    <h1 style="font-size: 20px;">Tax Invoice</h1>
+                                                </div>
+                                                <div class="border mt-10">
+                                                    <div class="invoice-header row mt-10 p-3">
+                                                        <div class="col-md-8">
+                                                            <h5 id="txt_company_name"><b>FitnessWithGomzi</b></h5>
+                                                            <p style="font-size: 13px;" id="txt_company_address"
+                                                                class="mt-1">A- 301, Ambrosia
+                                                                Business Hub,
+                                                                VIP
+                                                                Road, beside SMC Garden,
+                                                                Vesu, Surat, Gujarat 395007</p>
+                                                            <p style="font-size: 13px;">Phone no.:
+                                                                <strong id="txt_company_mobile">8866842520</strong>
+                                                            </p>
+                                                            <p style="font-size: 13px;">Email:
+                                                                <strong
+                                                                    id="txt_company_email">fitnesswithgomzi@gmail.com</strong>
+                                                            </p>
+                                                            <p style="font-size: 13px;">GSTIN:
+                                                                <strong id="txt_company_gst">24AAGFF2816D1ZX</strong>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="invoice-details d-flex">
+                                                        <div class="col-md-5 border px-0">
+                                                            <div class="bill-to">Bill To</div>
+                                                            <strong>
+                                                                <p class="mt-2 pl-2" style="font-size: 14px;"
+                                                                    id="inv-name">John Doe</p>
+                                                            </strong>
+                                                            <strong>
+                                                                <p class="px-2" style="font-size: 14px;" id="inv-email">
+                                                                    divyeshbaraiya@gmail.com</p>
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-md-7 border text-right">
+                                                            <div class="bill-name-date px-2">
+                                                                <p><strong>Invoice No. :</strong>
+                                                                    <span id="inv-n">001</span>
+                                                                </p>
+                                                                <p class=""><strong>Date :-</strong>
+                                                                    <span id="inv-date">2023-07-05</span>
+                                                                </p>
+                                                                <p class=""><strong>Phone No. :-</strong>
+                                                                    <span id="inv-mobile">7486873619</span>
+                                                                </p>
+                                                                <p class=""><strong>Address :-</strong>
+                                                                    <span id="inv-address">123 Main St, Surat
+                                                                        Gujarat</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="invoice-items">
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Services</th>
+                                                                    <th>Paid Amount</th>
+                                                                    <th>Total Amount</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div id="inv-product">Product 1</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="inv-paid">1000</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="inv-total">12,000/-</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="invoice-details d-flex">
+                                                        <div class="col-md-6 border px-0">
+                                                            <div class="bill-to px-2">Description :-</div>
+                                                            <p style="font-size: 16px;" class="px-2"><b></b> <span
+                                                                    id="inv-notes">5000/-
+                                                                    pending</span> </p>
+                                                        </div>
+                                                        <div class="col-md-6 border px-0">
+                                                            <div class="bill-to px-2">Amount :-</div>
+                                                            <div class="bill-name-date px-2">
+                                                                <p><strong>Paid Amount :-</strong>
+                                                                    <span class="inv-paid">5000/-</span>
+                                                                </p>
+                                                                <p class=""><strong>Due Amount :-</strong>
+                                                                    <span id="inv-due">7000/-</span>
+                                                                </p>
+                                                                <p class=""><strong>Total Amount :-</strong>
+                                                                    <span class="inv-total">12,000/-</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="invoice-details d-flex">
+                                                        <div class="col-md-12 border px-0">
+                                                            <div class="bill-to px-2">Terms and Conditions :-</div>
+                                                            <div class="px-2">
+                                                                <p style="font-size: 13px;" class="mt-1">
+                                                                    <strong>*</strong> Payment
+                                                                    neither refundable nor transferable.
+                                                                </p>
+                                                                <p style="font-size: 13px;"><strong>*</strong>
+                                                                    Failure in Paying your fee
+                                                                    in the due time or the allotted day can result in
+                                                                    banning your course.
+                                                                </p>
+                                                                <p style="font-size: 13px;"><strong>*</strong> In
+                                                                    Case You Do Partial
+                                                                    Payment then Second installment you have to pay in
+                                                                    15 Days
+                                                                </p>
+                                                                <p style="font-size: 13px;"><strong>*</strong>
+                                                                    Pausing the plan and asking
+                                                                    for extension is strictly prohibited.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <button class="download-pdf-button btn-success btn mt-4"
+                                                    onclick="downloadPDF()">Download
+                                                    PDF</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <!-- /Row -->
+                    </div>
+                    <!-- /Container -->
+
+                    <!-- Footer -->
+                    <div class="hk-footer-wrap container">
+                        <footer class="footer">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <p>Copyright &copy
+                                        <a href="https://gcsconsultant.com/digital-marketing-agency.html"
+                                            target="_blank">FG Digital</a>&nbsp;Powered
+                                        by<a href="https://gcsconsultant.com" target="_blank"></a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </footer>
+                    </div>
+                    <!-- /Footer -->
+                </div>
+                <!-- /Main Content -->
+
+            </div>
+            <!-- /HK Wrapper -->
+
+            <!-- jQuery -->
+            <script src="dist/vendors4/jquery/dist/jquery.min.js"></script>
+
+            <!-- Bootstrap Core JavaScript -->
+            <script src="dist/vendors4/popper.js/dist/umd/popper.min.js"></script>
+            <script src="dist/vendors4/bootstrap/dist/js/bootstrap.min.js"></script>
+
+            <!-- Slimscroll JavaScript -->
+            <script src="dist/js/jquery.slimscroll.js"></script>
+
+            <!-- Fancy Dropdown JS -->
+            <script src="dist/js/dropdown-bootstrap-extended.js"></script>
+
+            <!-- FeatherIcons JavaScript -->
+            <script src="dist/js/feather.min.js"></script>
+
+            <!-- Toggles JavaScript -->
+            <script src="dist/vendors4/jquery-toggles/toggles.min.js"></script>
+            <script src="dist/js/toggle-data.js"></script>
+
+            <!-- Toastr JS -->
+            <script src="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+            <script src="dist/js/toast-data.js"></script>
+
+            <!-- Data Table JavaScript -->
+            <script src="dist/vendors4/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="dist/vendors4/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+            <script src="dist/vendors4/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="dist/vendors4/jszip/dist/jszip.min.js"></script>
+            <script src="dist/vendors4/pdfmake/build/pdfmake.min.js"></script>
+            <script src="dist/vendors4/pdfmake/build/vfs_fonts.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="dist/vendors4/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="dist/js/dataTables-data.js"></script>
+
+            <!-- Counter Animation JavaScript -->
+            <script src="dist/vendors4/waypoints/lib/jquery.waypoints.min.js"></script>
+            <script src="dist/vendors4/jquery.counterup/jquery.counterup.min.js"></script>
+
+            <!-- Select2 JavaScript -->
+            <script src="dist/vendors4/select2/dist/js/select2.full.min.js"></script>
+            <!-- <script src="dist/js/select2-data.js"></script> -->
+
+            <!-- Morris Charts JavaScript -->
+            <script src="dist/vendors4/raphael/raphael.min.js"></script>
+            <script src="dist/vendors4/morris.js/morris.min.js"></script>
+
+            <!-- Easy pie chart JS -->
+            <script src="dist/vendors4/easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+
+            <!-- Apex JavaScript -->
+            <script src="dist/vendors4/apexcharts/dist/apexcharts.min.js"></script>
+
+            <!-- EChartJS JavaScript -->
+            <script src="dist/vendors4/echarts/dist/echarts-en.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <!-- Init JavaScript -->
+            <script src="dist/js/init.js"></script>
+            <script src="dist/js/dashboard2-data.js"></script>
+
+            <!-- Sweet-alert -->
+            <script src="dist/sweetalert2.js"></script>
+
+            <!-- Pace -->
+            <script src="dist/vendors4/pace-progress/pace.min.js"></script>
+
+            <!--Nestable js -->
+            <script src="dist/vendors4/nestable2/dist/jquery.nestable.min.js"></script>
+
+            <!-- Custom Script -->
+            <script src="dist/app.js"></script>
+            <script src="dist/menu-items.js"></script>
+
+            <!-- Authorization -->
+            <script src="dist/authorization.js"></script>
+
+            <!-- DatePiker -->
+            <script src="dist/vendors4/moment/min/moment.min.js"></script>
+            <script src="dist/vendors4/daterangepicker/daterangepicker.js"></script>
+            <link rel="stylesheet" href="dist/vendors4/daterangepicker/daterangepicker.css">
+
+            <script src="dist/js/pdfMake.js"></script>
+            <script src="dist/js/jsPdf.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.0/html2canvas.min.js"></script>
+
+            <script>
+                window.jsPDF = window.jspdf.jsPDF
+                function printInvoice() {
+                    window.print();
+                }
+
+                function downloadPDF() {
+                    const { jsPDF } = window.jspdf;
+                    var doc = new jsPDF('p', 'mm', [600, 800]);
+                    // Define custom font for Indian Rupee symbol
+                    doc.addFont('ArialUnicodeMS.ttf', 'ArialUnicodeMS', 'normal');
+                    var pdfjs = document.querySelector('#invoice');
+
+                    // Calculate offsets to center-align the content
+                    var contentWidth = doc.internal.pageSize.getWidth();
+                    var contentHeight = doc.internal.pageSize.getHeight();
+                    var xOffset = (contentWidth - pdfjs.offsetWidth) / 2;
+                    var yOffset = (contentHeight - pdfjs.offsetHeight) / 2;
+
+                    // Convert HTML to PDF in JavaScript
+                    doc.html(pdfjs, {
+                        x: xOffset,
+                        y: yOffset,
+                        callback: function (doc) {
+                            doc.save("invoice.pdf");
+                        }
+                    });
+                }
+
+                $(document).ready(() => {
+                    getAdmin();
+                });
+
+                // Adding Invoice
+                $("#btn_add").click(async () => {
+                    var invoice_number = $("#txt_InvoiceN").val();
+                    var date = $("#txt_Date").val();
+                    var fullName = $("#txt_FullName").val();
+                    var email = $("#txt_Email").val();
+                    var phoneNumber = $("#txt_mobile").val();
+                    var invoiceAddress = $("#txt_address").val();
+                    var productName = $("#txt_Pname").val();
+                    var paymentMethod = $("#txt_Pmethod").val();
+                    var totalPayment = Math.round(parseFloat($("#txt_Tpayment").val()));
+                    var paidPayment = Math.round(parseFloat($("#txt_Ppayment").val()));
+                    var invoiceNotes = $("#txt_Inotes").val();
+                    var regex_email = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                    var bodyObject = {
+                        invoice_number: invoice_number,
+                        date: date,
+                        fullName: fullName,
+                        email: email,
+                        phoneNumber: phoneNumber,
+                        invoiceAddress: invoiceAddress,
+                        productName: productName,
+                        paymentMethod: paymentMethod,
+                        totalPayment: totalPayment,
+                        paidPayment: paidPayment,
+                        invoiceNotes: invoiceNotes
+                    };
+
+                    $.post({
+                        url: `${BASE_URL}/invoice/create`,
+                        contentType: 'application/json',
+                        data: JSON.stringify(bodyObject),
+                        success: (result) => {
+                            result = result.data;
+                            swal.fire({
+                                title: 'Successful',
+                                text: 'Invoice Created successfully',
+                                icon: 'success',
+                            });
+
+                            // Clear the form fields
+                            $('#invoice_form')[0].reset();
+
+                            // Set the data in the respective IDs
+                            $('#inv-n').text(result.invoice_number);
+                            $('#inv-date').text(result.date);
+                            $('#inv-name').text(result.fullName);
+                            $('#inv-address').text(result.invoiceAddress);
+                            $('#inv-mobile').text(result.phoneNumber);
+                            $('#inv-email').text(result.email);
+                            $('#inv-product').text(result.productName);
+                            $('.inv-paid').text(result.paidPayment);
+                            $('.inv-total').text(result.totalPayment);
+                            $('#inv-notes').text(result.invoiceNotes);
+
+                            // Calculate and display the due amount
+                            const dueAmount = result.totalPayment - result.paidPayment;
+                            $('#inv-due').text(dueAmount);
+                        },
+
+                        beforeSend: () => {
+                            $('#btn_add').attr('disabled', true);
+                        },
+                        complete: () => {
+                            $('#btn_add').removeAttr('disabled');
+                        }
+                    });
+                });
+
+                let admin_id
+
+                function getAdmin() {
+                    $.get({
+                        url: BASE_URL + '/get-profile',
+                        success: (result) => {
+                            var result = result.data;
+                            admin_id = result._id;
+                            getCompanyDetails(admin_id)
+                        },
+                        error: (error) => {
+                            window.location.href = 'login.html'
+                        }
+                    });
+                }
+
+                // Getting Company
+                function getCompanyDetails(admin_id) {
+                    $.get({
+                        url: BASE_URL + '/company/get',
+                        contentType: 'application/json',
+                        success: (result) => {
+                            var result = result.data;
+                            console.log(result)
+                            if (result) {
+                                for (var i = 0; i < result.length; i++) {
+                                    var tempUser = result[i];
+                                    if (tempUser.createdById == admin_id) {
+                                        $('#txt_company_name').text(tempUser.company_name)
+                                        $('#txt_company_address').text(tempUser.company_address)
+                                        $('#txt_company_mobile').text(tempUser.company_mobile)
+                                        $('#txt_company_email').text(tempUser.company_email)
+                                        $('#txt_company_gst').text(tempUser.company_gst)
+                                    }
+                                }
+                            }
+                        },
+                        error: (error) => {
+                            return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+                        }
+                    });
+                }
+            </script>
+
+</body>
+
+</html>

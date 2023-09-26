@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Total Sales Dashboard</title>
+    <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="dist/img/favi.ico">
+    <link rel="icon" href="dist/img/favi.ico" type="image/x-icon">
+
+    <!-- Morris Charts CSS -->
+    <link href="dist/vendors4/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+    <!-- Toggles CSS -->
+    <link href="dist/vendors4/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="dist/vendors4/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+
+    <!-- Toastr CSS -->
+    <link href="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Pace -->
+    <link rel="stylesheet" href="dist/vendors4/pace-progress/themes/blue/pace-theme-minimal.css">
+
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="dist/css/fontawesome-free/css/all.min.css">
+</head>
+
+<body>
+    <!-- HK Wrapper -->
+    <div class="hk-wrapper hk-vertical-nav">
+
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+            <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i
+                    class="ion ion-ios-menu"></i></a>
+            <a class="navbar-brand" href="admin.html">
+                <img class="brand-img d-inline-block mr-5" src="dist/img/fitit-logo.png" alt="brand" width="10%" />
+            </a>
+            <ul class="navbar-nav hk-navbar-content" id="ui_header_profile"></ul>
+        </nav>
+        <!-- /Top Navbar -->
+
+        <!--Vertical Nav-->
+        <div id="navHTML"></div>
+        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+        <!--/Vertical Nav-->
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper mt-25">
+            <!-- Container -->
+            <div class="container-fluid">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <!-- Wrapper -->
+                                <section class="hk-sec-wrapper">
+                                    <div class="row justify-content-between">
+                                        <div class="col-md-6">
+                                            <h3>Total Sales</h3>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="row justify-content-end">
+                                                <div class="mr-3">
+                                                    <div id="reportrange"
+                                                        style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                                                        <i class="fa fa-calendar"></i>&nbsp;
+                                                        <span></span> <i class="fa fa-caret-down"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 mt-md-30">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-4">
+                                                    <div class="card alert-primary">
+                                                        <div class="card-body">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-md-3 px-0">
+                                                                    <i class="fas fa-hand-holding-usd"
+                                                                        style="font-size: 50px;"></i>
+                                                                </div>
+                                                                <div class="col-md-9 text-right">
+                                                                    <h4 class="card-title mt-2 mb-0" id="paid_amount">
+                                                                        ₹3,50,000/-
+                                                                    </h4>
+                                                                    <p class="card-text mt-2">Paid Amount</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="position-absolute" style="top: 37%;right: -7px;">
+                                                        <i class="fas fa-plus" style="font-size: 18px;"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="card alert-warning">
+                                                        <div class="card-body">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-md-3 px-0 text-center">
+                                                                    <i class="fas fa-file-invoice-dollar"
+                                                                        style="font-size: 50px;"></i>
+                                                                </div>
+                                                                <div class="col-md-9 text-right">
+                                                                    <h4 class="card-title mt-2 mb-0" id="due_amount">
+                                                                        ₹1,00,000/-
+                                                                    </h4>
+                                                                    <p class="card-text mt-2">Due Amount</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="position-absolute" style="top: 37%;right: -7px;">
+                                                        <i class="fas fa-equals" style="font-size: 18px;"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="card alert-success">
+                                                        <div class="card-body">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-md-3 px-0">
+                                                                    <i class="fas fa-hand-holding-usd"
+                                                                        style="font-size: 50px;"></i>
+                                                                </div>
+                                                                <div class="col-md-9 text-right">
+                                                                    <h4 class="card-title mt-2 mb-0" id="total_amount">
+                                                                        ₹4,50,000/-</h4>
+                                                                    <p class="card-text mt-2">Total Amount</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-25 align-items-center">
+                                        <div class="col-md-6">
+                                            <h4>Paid Amount</h4>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <a href="create-invoice.html" class="btn btn-outline-blue">Create
+                                                Invoice</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mt-20">
+                                        <div class="table-wrap">
+                                            <table id="tbl_invoice_user" class="table table-bordered table-striped"
+                                                style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>User Name</th>
+                                                        <th>Mobile</th>
+                                                        <th>Product</th>
+                                                        <th>Paid Amount</th>
+                                                        <th>Total Amount</th>
+                                                        <th>Purchase Date</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="text-center">
+                                                        <td colspan="7"><img src="dist/img/loader.gif"
+                                                                style="width:30px">
+                                                        </td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>User Name</th>
+                                                        <th>Mobile</th>
+                                                        <th>Product</th>
+                                                        <th id="totalPaidAmountDiv">Paid Amount</th>
+                                                        <th id="totalAmountDiv">Total Amount</th>
+                                                        <th>Purchase Date</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <!-- /Row -->
+                    </div>
+                    <!-- /Container -->
+
+                    <!-- Footer -->
+                    <div class="hk-footer-wrap container">
+                        <footer class="footer">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <p>Copyright &copy
+                                        <a href="https://gcsconsultant.com/digital-marketing-agency.html"
+                                            target="_blank">FG Digital</a>&nbsp;Powered
+                                        by<a href="https://gcsconsultant.com" target="_blank"></a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </footer>
+                    </div>
+                    <!-- /Footer -->
+                </div>
+                <!-- /Main Content -->
+            </div>
+            <!-- /HK Wrapper -->
+
+            <!-- jQuery -->
+            <script src="dist/vendors4/jquery/dist/jquery.min.js"></script>
+
+            <!-- Bootstrap Core JavaScript -->
+            <script src="dist/vendors4/popper.js/dist/umd/popper.min.js"></script>
+            <script src="dist/vendors4/bootstrap/dist/js/bootstrap.min.js"></script>
+
+            <!-- Slimscroll JavaScript -->
+            <script src="dist/js/jquery.slimscroll.js"></script>
+
+            <!-- Fancy Dropdown JS -->
+            <script src="dist/js/dropdown-bootstrap-extended.js"></script>
+
+            <!-- FeatherIcons JavaScript -->
+            <script src="dist/js/feather.min.js"></script>
+
+            <!-- Toggles JavaScript -->
+            <script src="dist/vendors4/jquery-toggles/toggles.min.js"></script>
+            <script src="dist/js/toggle-data.js"></script>
+
+            <!-- Toastr JS -->
+            <script src="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+            <script src="dist/js/toast-data.js"></script>
+
+            <!-- Data Table JavaScript -->
+            <script src="dist/vendors4/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="dist/vendors4/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+            <script src="dist/vendors4/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="dist/vendors4/jszip/dist/jszip.min.js"></script>
+            <script src="dist/vendors4/pdfmake/build/pdfmake.min.js"></script>
+            <script src="dist/vendors4/pdfmake/build/vfs_fonts.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="dist/vendors4/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="dist/js/dataTables-data.js"></script>
+
+            <!-- Counter Animation JavaScript -->
+            <script src="dist/vendors4/waypoints/lib/jquery.waypoints.min.js"></script>
+            <script src="dist/vendors4/jquery.counterup/jquery.counterup.min.js"></script>
+
+            <!-- Select2 JavaScript -->
+            <script src="dist/vendors4/select2/dist/js/select2.full.min.js"></script>
+            <!-- <script src="dist/js/select2-data.js"></script> -->
+
+            <!-- Morris Charts JavaScript -->
+            <script src="dist/vendors4/raphael/raphael.min.js"></script>
+            <script src="dist/vendors4/morris.js/morris.min.js"></script>
+
+            <!-- Easy pie chart JS -->
+            <script src="dist/vendors4/easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+
+            <!-- Apex JavaScript -->
+            <script src="dist/vendors4/apexcharts/dist/apexcharts.min.js"></script>
+
+            <!-- EChartJS JavaScript -->
+            <script src="dist/vendors4/echarts/dist/echarts-en.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <!-- Init JavaScript -->
+            <script src="dist/js/init.js"></script>
+            <script src="dist/js/dashboard2-data.js"></script>
+
+            <!-- Sweet-alert -->
+            <script src="dist/sweetalert2.js"></script>
+
+            <!-- Pace -->
+            <script src="dist/vendors4/pace-progress/pace.min.js"></script>
+
+            <!--Nestable js -->
+            <script src="dist/vendors4/nestable2/dist/jquery.nestable.min.js"></script>
+
+            <!-- Custom Script -->
+            <script src="dist/app.js"></script>
+            <script src="dist/menu-items.js"></script>
+
+            <!-- Authorization -->
+            <script src="dist/authorization.js"></script>
+
+            <!-- DatePiker -->
+            <script src="dist/vendors4/moment/min/moment.min.js"></script>
+            <script src="dist/vendors4/daterangepicker/daterangepicker.js"></script>
+            <link rel="stylesheet" href="dist/vendors4/daterangepicker/daterangepicker.css">
+
+
+            <script>
+                $(document).ready(() => {
+                    getInvoiceAmount();
+                });
+
+
+                function getInvoiceAmount() {
+                    $.get({
+                        url: `${BASE_URL}/invoice/get`,
+                        success: (result) => {
+                            // Get data 
+                            const totalData = result.data;
+                            console.log(totalData)
+
+                            // Initialize total amount variable
+                            let totalAmount = 0;
+                            let paidAmount = 0;
+                            let dueAmount = 0;
+
+                            // Loop through each invoice detail
+                            for (let i = 0; i < totalData.length; i++) {
+                                const invoice = totalData[i];
+                                const totalPayment = Number(invoice.totalPayment); // Convert to number
+                                const paidPayment = Number(invoice.paidPayment);
+
+                                paidAmount += paidPayment;
+                                totalAmount += totalPayment;
+                            }
+
+                            dueAmount = totalAmount - paidAmount;
+                            dueAmount = Math.max(dueAmount, 0); // Set due amount to 0 if negative
+
+                            // Format the amounts as Indian rupee style
+                            const formattedTotalAmount = formatAmount(totalAmount);
+                            const formattedPaidAmount = formatAmount(paidAmount);
+                            const formattedDueAmount = dueAmount < 0 ? "No due pending" : formatAmount(dueAmount);
+
+                            // Call the function to update the total amount on the UI
+                            updateTotalAmount(formattedTotalAmount, formattedPaidAmount, formattedDueAmount);
+                        },
+                        error: (error) => {
+                            return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+                        }
+                    });
+                }
+
+                function formatAmount(amount) {
+                    // Format the amount as Indian rupee style
+                    const formattedAmount = amount.toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
+
+                    // Remove the decimal part and add a hyphen
+                    const formattedAmountWithHyphen = formattedAmount.replace(/\.00$/, '') + '/-';
+
+                    return formattedAmountWithHyphen;
+                }
+
+                function updateTotalAmount(amount, amount1, amount2) {
+                    // Update the total amount on the UI
+                    $('#total_amount').text(`₹${amount}/-`);
+                    $('#paid_amount').text(`₹${amount1}/-`);
+                    $('#due_amount').text(`₹${amount2}/-`);
+                }
+            </script>
+            <script type="text/javascript">
+                // Move the tblInvoice variable declaration here
+
+                $(document).ready(() => {
+                    // Initialize the data table
+                    tblInvoice = $('#tbl_invoice_user').DataTable({
+                        destroy: true,
+                        responsive: true,
+                        lengthMenu: [10, 25, 50, 75, 100, 200, 500, 800, 1000],
+                        pageLength: 10,
+                        paging: true, // Disable pagination
+                        searching: true,
+                        language: {
+                            search: "_INPUT_",
+                            searchPlaceholder: "Search...",
+                            "sLengthMenu": "Show _MENU_ Records",
+                        },
+                        "dom": '<"row"<"col-10"l><"col-2"f><"col-12"rt><"col-12">><"row"<"col-9"i><"col-3"p>><"clear">',
+                        columns: [
+                            { width: "1%" },
+                            { width: "10%" },
+                            { width: "10%" },
+                            { width: "10%" },
+                            { width: "8%" },
+                            { width: "11%" },
+                            { width: "10%" },
+                            { width: "12%" },
+                        ],
+                    });
+
+                    // Fetch and populate data after setting up filters
+                    getInvoiceDetails();
+
+                    // Initialize date range picker and apply the initial date filter
+                    $('#reportrange').daterangepicker({
+                        startDate: moment().subtract(29, 'days'),
+                        endDate: moment(),
+                        ranges: {
+                            'Today': [moment(), moment()],
+                            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                            'This Month': [moment().startOf('month'), moment().endOf('month')],
+                            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                        }
+                    }, applyDateFilter);
+                    applyDateFilter();
+                });
+
+                function getInvoiceDetails() {
+                    $.get({
+                        url: `${BASE_URL}/invoice/get`,
+                        success: (result) => {
+                            const data = result.data;
+                            tblInvoice.clear().draw();
+                            let invoiceIndex = 1;
+
+                            // Initialize total amounts variables
+                            let totalPaidAmount = 0;
+                            let totalAmount = 0;
+
+                            for (let i = 0; i < data.length; i++) {
+                                const tempUser = data[i];
+                                const action = `<div class="d-flex">
+    <button type="button" class="btn mr-1 btn-outline-success" title="view user" onclick="window.location.href ='update-invoice.html?id=${tempUser._id}'")"><i class="fas fa-edit"></i> Update</button>
+</div>`;
+
+                                const paidPayment = Number(tempUser.paidPayment);
+                                const totalPayment = Number(tempUser.totalPayment);
+
+                                totalPaidAmount += paidPayment;
+                                totalAmount += totalPayment;
+
+                                // Filter by date range using moment.js
+                                const startDate = $('#reportrange').data('daterangepicker').startDate;
+                                const endDate = $('#reportrange').data('daterangepicker').endDate;
+                                const invoiceDate = moment(tempUser.date, 'YYYY-MM-DD');
+
+                                if (invoiceDate.isBetween(startDate, endDate, null, '[]')) {
+                                    tblInvoice.row.add([
+                                        invoiceIndex,
+                                        `${tempUser.fullName || ''}`,
+                                        tempUser.phoneNumber || "N/A",
+                                        tempUser.productName,
+                                        tempUser.paidPayment,
+                                        tempUser.totalPayment,
+                                        tempUser.date || "N/A",
+                                        action
+                                    ]).draw();
+                                    invoiceIndex++;
+                                }
+                            }
+
+                            // Format the amounts as Indian rupee style
+                            const formattedTotalPaidAmount = formatAmount(totalPaidAmount);
+                            const formattedTotalAmount = formatAmount(totalAmount);
+
+                            // Update the respective div elements with the calculated sums
+                            $('#totalPaidAmountDiv').text('Total :-' + '₹' + formattedTotalPaidAmount);
+                            $('#totalAmountDiv').text('Total :-' + '₹' + formattedTotalAmount);
+                        },
+                        error: (error) => {
+                            return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+                        }
+                    });
+                }
+
+                function formatAmount(amount) {
+                    return new Intl.NumberFormat('en-IN').format(amount);
+                }
+
+                function applyDateFilter(start, end) {
+                    const startDate = start || moment().subtract(29, 'days');
+                    const endDate = end || moment();
+                    $('#reportrange span').html(startDate.format('MMMM D, YYYY') + ' - ' + endDate.format('MMMM D, YYYY'));
+
+                    getInvoiceDetails();
+                }
+            </script>
+</body>
+
+</html>

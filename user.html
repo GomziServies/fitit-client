@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Client User - FWG</title>
+    <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="dist/img/favi.ico">
+    <link rel="icon" href="dist/img/favi.ico" type="image/x-icon">
+
+    <!-- Morris Charts CSS -->
+    <link href="dist/vendors4/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+    <!-- Data Table CSS -->
+    <link href="dist/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Toggles CSS -->
+    <link href="dist/vendors4/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="dist/vendors4/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+
+    <!-- Toastr CSS -->
+    <link href="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Pace -->
+    <link rel="stylesheet" href="dist/vendors4/pace-progress/themes/blue/pace-theme-minimal.css">
+
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="dist/css/fontawesome-free/css/all.min.css">
+</head>
+
+<body>
+    <!-- HK Wrapper -->
+    <div class="hk-wrapper hk-vertical-nav">
+
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+            <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i
+                    class="ion ion-ios-menu"></i></a>
+            <a class="navbar-brand" href="admin.html">
+                <img class="brand-img d-inline-block mr-5" src="dist/img/fitit-logo.png" alt="brand" width="10%" />
+            </a>
+            <ul class="navbar-nav hk-navbar-content" id="ui_header_profile"></ul>
+        </nav>
+        <!-- /Top Navbar -->
+        <img src="https://fitit.producation.s3.ap-south-1.amazonaws.com/development/FILE-52234408-5226-482a-b7fe-62bf0c38d4df.png"
+            onerror="this.onerror=null;this.src='dist/img/logo.png';"
+            style="border-radius: 50%; width:70px;height:60px">
+        <img src="https://fitit.producation.s3.ap-south-1.amazonaws.com/development/FILE-52234408-5226-482a-b7fe-62bf0c38d4df.png"
+            width="100%" alt="">
+        <!--Vertical Nav-->
+        <div id="navHTML"></div>
+        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+        <!--/Vertical Nav-->
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper">
+            <div class="container-fluid">
+                <div class="container content-header">
+                    <div class="row mt-15 mb-15 align-items-center">
+                        <div class="col-md-6">
+                            <h1>All User</h1>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Breadcrumb -->
+                            <nav class="hk-breadcrumb" aria-label="breadcrumb">
+                                <ol class="breadcrumb bg-transparent float-sm-right mb-0">
+                                    <li class="breadcrumb-item"><a href="admin.html">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Users</li>
+                                </ol>
+                            </nav>
+                            <!-- /Breadcrumb -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container -->
+            <div class="container-fluid">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <!-- Wrapper -->
+                        <section class="hk-sec-wrapper">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-wrap">
+                                        <table id="tbl_user" class="table table-bordered pb-30">
+                                            <!-- <div id="idid" class="col-7"></div> -->
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>Name</th>
+                                                    <th>Profile</th>
+                                                    <th>Email</th>
+                                                    <th>Mobile</th>
+                                                    <th>Registered On</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="text-align: center;">
+                                                    <td colspan="8"><img src="dist/img/loader.gif" style="width:30px">
+                                                    </td>
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- /Row -->
+            </div>
+            <!-- /Container -->
+
+
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /HK Wrapper -->
+
+    <!-- jQuery -->
+    <script src="dist/vendors4/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="dist/vendors4/popper.js/dist/umd/popper.min.js"></script>
+    <script src="dist/vendors4/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Slimscroll JavaScript -->
+    <script src="dist/js/jquery.slimscroll.js"></script>
+
+    <!-- Fancy Dropdown JS -->
+    <script src="dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- FeatherIcons JavaScript -->
+    <script src="dist/js/feather.min.js"></script>
+
+    <!-- Toggles JavaScript -->
+    <script src="dist/vendors4/jquery-toggles/toggles.min.js"></script>
+    <!-- Toastr JS -->
+    <script src="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+    <script src="dist/js/toast-data.js"></script>
+
+    <!-- Counter Animation JavaScript -->
+    <script src="dist/vendors4/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="dist/vendors4/jquery.counterup/jquery.counterup.min.js"></script>
+
+    <script src="dist/vendors4/datatables.net/js/jquery.dataTables.min.js"></script>
+
+
+    <!-- Morris Charts JavaScript -->
+    <script src="dist/vendors4/raphael/raphael.min.js"></script>
+    <script src="dist/vendors4/morris.js/morris.min.js"></script>
+
+    <!-- Easy pie chart JS -->
+    <script src="dist/vendors4/easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+
+    <!-- Apex JavaScript -->
+    <!-- <script src="dist/vendors4/apexcharts/dist/apexcharts.min.js"></script> -->
+
+    <!-- EChartJS JavaScript -->
+    <script src="dist/vendors4/echarts/dist/echarts-en.min.js"></script>
+
+    <!-- Init JavaScript -->
+    <script src="dist/js/init.js"></script>
+    <script src="dist/js/dashboard2-data.js"></script>
+
+    <!-- Moment -->
+    <script src="dist/vendors4/moment/min/moment.min.js"></script>
+
+    <!-- Pace -->
+    <script src="dist/vendors4/pace-progress/pace.min.js"></script>
+
+    <!-- Sweet-alert -->
+    <script src="dist/sweetalert2.js"></script>
+
+    <!-- Custom js -->
+    <script src="dist/app.js"></script>
+    <script src="dist/menu-items.js"></script>
+
+    <!-- Authorization -->
+    <script src="dist/authorization.js"></script>
+</body>
+<script>
+
+    // let searchOption = document.getElementById('tbl_user_filter')
+    let tblUser = $('#tbl_user').DataTable({
+        destroy: true,
+        responsive: true,
+        lengthMenu: [10, 25, 50, 75, 100, 200, 500, 800, 1000],
+        pageLength: 50,
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search...",
+            "sLengthMenu": "Show _MENU_ Records",
+        },
+        "dom": '<"row"<"#idid.col-7"><"col-5"fl><"col-12"rt><"col-12">><"row"<"col-12"ip>><"clear">',
+        "columns": [{
+            "width": "1%"
+        }, {
+            "width": "6%",
+        }, {
+            "width": "6%",
+            "className": 'text-center'
+        }, {
+            "width": "6%"
+        }, {
+            "width": "6%"
+        }, {
+            "width": "6%"
+        }, {
+            "width": "4%"
+        }, {
+            "width": "10%"
+        },]
+    });
+    // Add content to col-7
+    $('#idid').html('<div>' +
+        '<div class="d-flex">' +
+        '<div class="">' +
+        '<a class="btn text-white" style="background-color: #0854ff;" href="user-view.html"><i class="fa fa-plus"></i>&nbsp; Create</a>' +
+        '</div>' +
+        '<div class="form-group ml-3">' +
+        '<select class="form-control" id="list_status_type" onchange="filterUserType(this)">' +
+        '<option value="">All</option>' +
+        '<option value="active">Active</option>' +
+        '<option value="deactivated">Inactive</option>' +
+        '</select>' +
+        '</div>' +
+        '</div>' +
+        '</div>');
+
+
+    $(document).ready(() => {
+        getUsers()
+    });
+
+    function getUsers() {
+        $.get({
+            url: BASE_URL + '/user/get',
+            success: (result) => {
+                tblUser.clear().draw();
+                var result = result.data;
+                console.log(result)
+                if (result) {
+
+                    let tableRow = []
+                    let userStatusToggle = []
+
+                    for (var i = 0; i < result.length; i++) {
+                        var tempUser = result[i],
+
+                            button = `<div class="d-flex" role="group" aria-label="Button group with nested dropdown">
+                                        <div class="d-flex">
+                                            <button type="button" class="btn mr-1 btn-outline-success" title="view user" onclick="window.location.href ='user-view.html?user_id=${tempUser._id}'")"><i class="fas fa-eye"></i> </button>
+                                            <button type="button" class="btn mr-1 btn-outline-primary" title="view plan" onclick="window.location.href='user-assign-plan.html?user_id=${tempUser._id}'"><i class="fas fa-file-invoice"></i> </button>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit </button>
+                                            <div class="dropdown-menu">
+                                                    <button class='dropdown-item' onclick="window.location.href='user-food.html?user_id=${tempUser._id}'"><i class="mr-10 fas fa-apple-alt"></i>Food</button>
+                                                    <button class='dropdown-item' onclick="window.location.href='user-weight.html?user_id=${tempUser._id}'"><i class="mr-10 fa fa-balance-scale"></i>Weight</button>
+                                                    <button class='dropdown-item' onclick="window.location.href='user-height.html?user_id=${tempUser._id}'"><i class="mr-10 fa fa-text-height"></i>Height</button>
+                                                    <button class='dropdown-item' onclick="window.location.href='user-reports.html?user_id=${tempUser._id}'"><i class="mr-10 fas fa-file-medical"></i>Reports</button>
+                                                    <button class='dropdown-item' onclick="window.location.href='user-water-intake.html?user_id=${tempUser._id}'"><i class="mr-10 fas fa-tint"></i>Water Intake</button>
+                                            </div>
+                                        </div>
+                                    </div>`
+
+                        if (tempUser.status == "DELETED") {
+                            continue
+                        }
+
+                        if (tempUser.profile_image) {
+                            image = `<img src='${tempUser.profile_image}' onError="this.onerror=null;this.src='dist/img/logo.png';" style='border-radius: 50%; width:70px;height:60px'>`
+                        } else {
+                            image = `-`
+                        }
+
+                        let statusButton;
+
+                        if (tempUser.status == 'ACTIVE') {
+                            statusButton = `<button class="btn btn-info float-right mb-2 text-white" href="user-view.html" onclick=deactivate("${tempUser._id}")>${tempUser.status}</button>`
+                        } else if (tempUser.status == 'DELETED') {
+                            statusButton = `<button class="btn btn-danger float-right mb-2 text-white" href="user-view.html" onclick=activate("${tempUser._id}")>${tempUser.status}</button>`
+                        } else if (tempUser.status == 'DEACTIVATED') {
+                            statusButton = `<button class="btn btn-warning float-right mb-2 text-white" href="user-view.html" onclick=activate("${tempUser._id}")>${tempUser.status}</button>`
+                        }
+
+                        userStatusToggle.push({
+                            id: tempUser._id,
+                            status: tempUser.status == "ACTIVE"
+                        })
+
+                        tableRow.push([
+                            i + 1,
+                            `${tempUser.firstName || ''} ${tempUser.lastName || ''}`,
+                            image,
+                            tempUser.email,
+                            tempUser.mobile,
+                            moment(tempUser.createdAt).format('DD-MM-YYYY - dddd'),
+                            statusButton,
+                            button
+                        ])
+
+                        // if (tempUser.status == 'ACTIVE') {
+                        //     $(`#btn_deactivate_${tempUser._id}`).removeClass('d-none')
+                        // } else {
+                        //     $(`#btn_activate_${tempUser._id}`).removeClass('d-none')
+                        // }
+                    }
+                    tblUser.rows.add(tableRow).draw();
+
+                    // check in url that if user id is present then open the modal
+                    if (window.location.href.indexOf('user_type') > -1) {
+                        let url = new URL(window.location.href);
+                        let user_type = url.searchParams.get("user_type");
+
+                        if (user_type) {
+                            filterUserTypeURL(user_type)
+                        }
+                    }
+                    // Toggles
+                    userStatusToggle.forEach(item => {
+                        $(`.toggle_user_status_${item.id}`).toggles({
+                            on: item.status,
+                            animate: 250, // animation time (ms)
+                            easing: 'swing', // animation transition easing function
+                            type: 'compact', // if this is set to 'select' then the select style toggle will be used
+                            text: {
+                                on: '<i class="fas fa-user-check"></i>',
+                                off: '<i class="fas fa-user-times"></i>'
+                            }
+                        });
+
+                        $(`.toggle_user_status_${item.id}`).on('toggle', function (e, active) {
+                            if (active) {
+                                activate(item.id, $(`.toggle_user_status_${item.id}`), `#td_status_${item.id}`)
+                            } else {
+                                deactivate(item.id, $(`.toggle_user_status_${item.id}`), `#td_status_${item.id}`)
+                            }
+                        });
+                    })
+                }
+            },
+            error: (error) => {
+                return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+
+            }
+        });
+    }
+
+    //Deactivate
+    function deactivate(id) {
+        $.ajax({
+            url: `${BASE_URL}/user/deactivate`,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                id
+            }),
+            success: (result) => {
+                result = result.data;
+                $.toast({
+                    heading: 'Successful',
+                    text: "User Deactivated successfully",
+                    position: 'top-right',
+                    loaderBg: '#08526e',
+                    class: 'jq-toast-success',
+                    hideAfter: 3500,
+                    stack: 6,
+                    showHideTransition: 'fade'
+                });
+
+                getUsers();
+            },
+            error: (error) => {
+                error = error.responseJSON
+                $.toast({
+                    heading: 'Error!',
+                    text: error.message,
+                    position: 'top-right',
+                    loaderBg: '#f21d1d',
+                    class: 'jq-toast-danger',
+                    hideAfter: 3500,
+                    stack: 6,
+                    showHideTransition: 'fade'
+                });
+            }
+        });
+    }
+
+    function activate(id) {
+        $.ajax({
+            url: `${BASE_URL}/user/activate`,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                id
+            }),
+            success: (result) => {
+                result = result.data;
+                toastSuccess('Success', 'User Activated')
+                return getUsers();
+            },
+            error: (error) => {
+                return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+            }
+        });
+    }
+
+    function filterUserType(element) {
+        let status = $(element).val()
+
+        if (status == 'active') {
+            return tblUser.search('ACTIVE').draw()
+        }
+        if (status == 'deactivated') {
+            return tblUser.search('DEACTIVATED').draw()
+        }
+
+        return tblUser.search('').draw()
+    }
+
+    function filterUserTypeURL(status) {
+
+        if (status == 'active') {
+            return tblUser.search('ACTIVE').draw()
+        }
+        if (status == 'deactivated') {
+            return tblUser.search('DEACTIVATED').draw()
+        }
+
+        return tblUser.search('').draw()
+    }
+</script>
+
+</html>

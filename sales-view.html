@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Total Sales</title>
+    <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="dist/img/favi.ico">
+    <link rel="icon" href="dist/img/favi.ico" type="image/x-icon">
+
+    <!-- Morris Charts CSS -->
+    <link href="dist/vendors4/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+    <!-- Toggles CSS -->
+    <link href="dist/vendors4/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="dist/vendors4/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+
+    <!-- Toastr CSS -->
+    <link href="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Pace -->
+    <link rel="stylesheet" href="dist/vendors4/pace-progress/themes/blue/pace-theme-minimal.css">
+
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="dist/css/fontawesome-free/css/all.min.css">
+</head>
+
+<body>
+    <!-- HK Wrapper -->
+    <div class="hk-wrapper hk-vertical-nav">
+
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+            <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i
+                    class="ion ion-ios-menu"></i></a>
+            <a class="navbar-brand" href="admin.html">
+                <img class="brand-img d-inline-block mr-5" src="dist/img/ico.png" alt="brand" />&nbsp; Fitness With
+                Gomzi
+            </a>
+            <ul class="navbar-nav hk-navbar-content" id="ui_header_profile"></ul>
+        </nav>
+        <!-- /Top Navbar -->
+
+        <!--Vertical Nav-->
+        <div id="navHTML"></div>
+        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+        <!--/Vertical Nav-->
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper mt-25">
+            <!-- Container -->
+            <div class="container-fluid">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <!-- Wrapper -->
+                                <section class="hk-sec-wrapper">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-3">
+                                            <h4>Invoice Details</h4>
+                                        </div>
+                                        <div class="col-2"></div>
+                                        <div class="col">
+                                            <div class="ml-auto w-85">
+                                                <div id="reportrange"
+                                                    style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                                                    <i class="fa fa-calendar"></i>&nbsp;
+                                                    <span></span> <i class="fa fa-caret-down"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 text-right pl-0">
+                                            <select id="filterOption" style="padding: 6px;">
+                                                <option value="all_data">All Data</option>
+                                                <option value="paid_amount">Paid Amount</option>
+                                                <option value="due_amount">Due Amount</option>
+                                                <option value="total_amount">Total Amount</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mt-20 px-0">
+                                        <div class="table-wrap">
+                                            <table id="tbl_invoice_user" class="table table-bordered table-striped"
+                                                style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>User Name</th>
+                                                        <th>Mobile</th>
+                                                        <th>Product</th>
+                                                        <th>Paid Amount</th>
+                                                        <th>Total Amount</th>
+                                                        <th>Due Amount</th>
+                                                        <th>Purchase Date</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="text-center">
+                                                        <td colspan="7"><img src="dist/img/loader.gif"
+                                                                style="width:30px">
+                                                        </td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                        <td hidden></td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>User Name</th>
+                                                        <th>Mobile</th>
+                                                        <th>Product</th>
+                                                        <th id="totalPaidAmountDiv">Paid Amount</th>
+                                                        <th id="totalAmountDiv">Total Amount</th>
+                                                        <th id="totalDueAmountDiv">Due Amount</th>
+                                                        <th>Purchase Date</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <!-- /Row -->
+                    </div>
+                    <!-- /Container -->
+
+                    <!-- Footer -->
+                    <div class="hk-footer-wrap container">
+                        <footer class="footer">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <p>Copyright &copy
+                                        <a href="https://gcsconsultant.com/digital-marketing-agency.html"
+                                            target="_blank">FG Digital</a>&nbsp;Powered
+                                        by<a href="https://gcsconsultant.com" target="_blank">Fitness With Gomzi</a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </footer>
+                    </div>
+                    <!-- /Footer -->
+                </div>
+                <!-- /Main Content -->
+
+            </div>
+            <!-- /HK Wrapper -->
+
+            <!-- jQuery -->
+            <script src="dist/vendors4/jquery/dist/jquery.min.js"></script>
+
+            <!-- Bootstrap Core JavaScript -->
+            <script src="dist/vendors4/popper.js/dist/umd/popper.min.js"></script>
+            <script src="dist/vendors4/bootstrap/dist/js/bootstrap.min.js"></script>
+
+            <!-- Slimscroll JavaScript -->
+            <script src="dist/js/jquery.slimscroll.js"></script>
+
+            <!-- Fancy Dropdown JS -->
+            <script src="dist/js/dropdown-bootstrap-extended.js"></script>
+
+            <!-- FeatherIcons JavaScript -->
+            <script src="dist/js/feather.min.js"></script>
+
+            <!-- Toggles JavaScript -->
+            <script src="dist/vendors4/jquery-toggles/toggles.min.js"></script>
+            <script src="dist/js/toggle-data.js"></script>
+
+            <!-- Toastr JS -->
+            <script src="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+            <script src="dist/js/toast-data.js"></script>
+
+            <!-- Data Table JavaScript -->
+            <script src="dist/vendors4/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="dist/vendors4/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+            <script src="dist/vendors4/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="dist/vendors4/jszip/dist/jszip.min.js"></script>
+            <script src="dist/vendors4/pdfmake/build/pdfmake.min.js"></script>
+            <script src="dist/vendors4/pdfmake/build/vfs_fonts.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="dist/vendors4/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="dist/js/dataTables-data.js"></script>
+
+            <!-- Counter Animation JavaScript -->
+            <script src="dist/vendors4/waypoints/lib/jquery.waypoints.min.js"></script>
+            <script src="dist/vendors4/jquery.counterup/jquery.counterup.min.js"></script>
+
+            <!-- Select2 JavaScript -->
+            <script src="dist/vendors4/select2/dist/js/select2.full.min.js"></script>
+            <!-- <script src="dist/js/select2-data.js"></script> -->
+
+            <!-- Morris Charts JavaScript -->
+            <script src="dist/vendors4/raphael/raphael.min.js"></script>
+            <script src="dist/vendors4/morris.js/morris.min.js"></script>
+
+            <!-- Easy pie chart JS -->
+            <script src="dist/vendors4/easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+
+            <!-- Apex JavaScript -->
+            <script src="dist/vendors4/apexcharts/dist/apexcharts.min.js"></script>
+
+            <!-- EChartJS JavaScript -->
+            <script src="dist/vendors4/echarts/dist/echarts-en.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <!-- Init JavaScript -->
+            <script src="dist/js/init.js"></script>
+            <script src="dist/js/dashboard2-data.js"></script>
+
+            <!-- Sweet-alert -->
+            <script src="dist/sweetalert2.js"></script>
+
+            <!-- Pace -->
+            <script src="dist/vendors4/pace-progress/pace.min.js"></script>
+
+            <!--Nestable js -->
+            <script src="dist/vendors4/nestable2/dist/jquery.nestable.min.js"></script>
+
+            <!-- Custom Script -->
+            <script src="dist/app.js"></script>
+            <script src="dist/menu-items.js"></script>
+
+            <!-- Authorization -->
+            <script src="dist/authorization.js"></script>
+
+            <!-- DatePiker -->
+            <script src="dist/vendors4/moment/min/moment.min.js"></script>
+            <script src="dist/vendors4/daterangepicker/daterangepicker.js"></script>
+            <link rel="stylesheet" href="dist/vendors4/daterangepicker/daterangepicker.css">
+
+            <script type="text/javascript">
+                let tblInvoice; // Move the tblInvoice variable declaration here
+
+                $(document).ready(() => {
+                    // Initialize the data table
+                    tblInvoice = $('#tbl_invoice_user').DataTable({
+                        destroy: true,
+                        responsive: true,
+                        lengthMenu: [10, 25, 50, 75, 100, 200, 500, 800, 1000],
+                        pageLength: 10,
+                        paging: true, // Disable pagination
+                        searching: true,
+                        language: {
+                            search: "_INPUT_",
+                            searchPlaceholder: "Search...",
+                            "sLengthMenu": "Show _MENU_ Records",
+                        },
+                        "dom": '<"row"<"col-10"l><"col-2"f><"col-12"rt><"col-12">><"row"<"col-6"i><"col-2"><"col-4"p>><"clear">',
+                        columns: [
+                            { width: "1%" },
+                            { width: "10%" },
+                            { width: "10%" },
+                            { width: "10%" },
+                            { width: "8%" },
+                            { width: "11%" },
+                            { width: "10%" },
+                            { width: "10%" },
+                            { width: "12%" },
+                        ],
+                    });
+
+                    // Fetch and populate data after setting up filters
+                    getInvoiceDetails();
+
+                    // Initialize date range picker and apply the initial date filter
+                    $('#reportrange').daterangepicker({
+                        startDate: moment().subtract(29, 'days'),
+                        endDate: moment(),
+                        ranges: {
+                            'Today': [moment(), moment()],
+                            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                            'This Month': [moment().startOf('month'), moment().endOf('month')],
+                            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                        }
+                    }, applyDateFilter);
+                    applyDateFilter();
+
+                    // Apply filters based on URL parameters
+                    $(document).ready(() => {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const filterParam = urlParams.get('filter');
+
+                        const defaultFilter = filterParam || 'all_data';
+
+                        $('#filterOption').val(defaultFilter);
+
+                        applyFilter(defaultFilter);
+
+                        $("#filterOption").on("change", function () {
+                            const selectedFilter = $(this).val();
+                            applyFilter(selectedFilter);
+                            updateUrlParam(selectedFilter);
+                        });
+
+                        $("#tbl_user_filter").on("keyup", function () {
+                            tblInvoice.search(this.value).draw();
+                        });
+                    });
+                });
+
+                function getInvoiceDetails() {
+                    $.get({
+                        url: `${BASE_URL}/invoice/get`,
+                        success: (result) => {
+                            const data = result.data;
+                            tblInvoice.clear().draw();
+                            let invoiceIndex = 1;
+
+                            // Initialize total amounts variables
+                            let totalPaidAmount = 0;
+                            let totalAmount = 0;
+                            let totalDueAmount = 0;
+
+                            for (let i = 0; i < data.length; i++) {
+                                const tempUser = data[i];
+                                const action = `<div class="d-flex">
+                    <button type="button" class="btn mr-1 btn-outline-success" title="view user" onclick="window.location.href ='update-invoice.html?id=${tempUser._id}'")"><i class="fas fa-edit"></i> Update</button>
+                </div>`;
+
+                                const paidPayment = Number(tempUser.paidPayment);
+                                const totalPayment = Number(tempUser.totalPayment);
+                                const dueAmount = totalPayment - paidPayment;
+
+                                totalPaidAmount += paidPayment;
+                                totalAmount += totalPayment;
+                                totalDueAmount += dueAmount;
+
+                                // Filter by date range using moment.js
+                                const startDate = $('#reportrange').data('daterangepicker').startDate;
+                                const endDate = $('#reportrange').data('daterangepicker').endDate;
+                                const invoiceDate = moment(tempUser.date, 'YYYY-MM-DD');
+
+                                if (invoiceDate.isBetween(startDate, endDate, null, '[]')) {
+                                    tblInvoice.row.add([
+                                        invoiceIndex,
+                                        `${tempUser.fullName || ''}`,
+                                        tempUser.phoneNumber || "N/A",
+                                        tempUser.productName,
+                                        tempUser.paidPayment,
+                                        tempUser.totalPayment,
+                                        dueAmount,
+                                        tempUser.date || "N/A",
+                                        action
+                                    ]).draw();
+                                    invoiceIndex++;
+                                }
+                            }
+
+                            // Format the amounts as Indian rupee style
+                            const formattedTotalPaidAmount = formatAmount(totalPaidAmount);
+                            const formattedTotalAmount = formatAmount(totalAmount);
+                            const formattedTotalDueAmount = totalDueAmount < 0 ? "No due pending" : formatAmount(totalDueAmount);
+
+                            // Update the respective div elements with the calculated sums
+                            $('#totalPaidAmountDiv').text('Total :-' + '₹' + formattedTotalPaidAmount);
+                            $('#totalAmountDiv').text('Total :-' + '₹' + formattedTotalAmount);
+                            $('#totalDueAmountDiv').text('Total :-' + '₹' + formattedTotalDueAmount);
+                        },
+                        error: (error) => {
+                            return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+                        }
+                    });
+                }
+
+                function formatAmount(amount) {
+                    return new Intl.NumberFormat('en-IN').format(amount);
+                }
+
+                function applyDateFilter(start, end) {
+                    const startDate = start || moment().subtract(29, 'days');
+                    const endDate = end || moment();
+                    $('#reportrange span').html(startDate.format('MMMM D, YYYY') + ' - ' + endDate.format('MMMM D, YYYY'));
+
+                    getInvoiceDetails();
+                }
+
+                function applyFilter(filter) {
+                    tblInvoice.columns().visible(true);
+
+                    if (filter === "paid_amount") {
+                        // Reset visibility of rows where due amount was hidden
+                        tblInvoice.rows().every(function () {
+                            const dueAmountCell = this.data()[6];
+                            if (dueAmountCell === 0) {
+                                $(this.node()).show();
+                            }
+                        });
+                        tblInvoice.columns([6, 7]).visible(false);
+                    } else if (filter === "due_amount") {
+                        tblInvoice.columns([4, 5, 7]).visible(false);
+                        tblInvoice.draw();
+                        tblInvoice.rows().every(function () {
+                            const dueAmountCell = this.data()[6];
+                            if (dueAmountCell === 0) {
+                                $(this.node()).hide();
+                            }
+                        });
+                    } else if (filter === "total_amount") {
+                        // Reset visibility of rows where due amount was hidden
+                        tblInvoice.rows().every(function () {
+                            const dueAmountCell = this.data()[6];
+                            if (dueAmountCell === 0) {
+                                $(this.node()).show();
+                            }
+                        });
+                        tblInvoice.columns([4, 6, 7]).visible(false);
+                    }
+
+                    tblInvoice.search("").draw(); // Clear any previous search
+
+                    if (filter === "all_data") {
+                        // Reset visibility of rows where due amount was hidden
+                        tblInvoice.rows().every(function () {
+                            const dueAmountCell = this.data()[6];
+                            if (dueAmountCell === 0) {
+                                $(this.node()).show();
+                            }
+                        });
+                        tblInvoice.search("").draw(); // Clear any previous search
+                    }
+                }
+
+                function updateUrlParam(filter) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    urlParams.set('filter', filter);
+                    const newUrl = window.location.pathname + '?' + urlParams.toString();
+                    history.pushState(null, '', newUrl);
+                }
+            </script>
+</body>
+
+</html>

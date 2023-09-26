@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Update Admin - FWG</title>
+    <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="dist/img/favi.ico">
+    <link rel="icon" href="dist/img/favi.ico" type="image/x-icon">
+
+    <!-- Morris Charts CSS -->
+    <link href="dist/vendors4/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+    <!-- select2 CSS -->
+    <link href="dist/vendors4/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Data Table CSS -->
+    <link href="dist/vendors4/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="dist/vendors4/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <!-- Toggles CSS -->
+    <link href="dist/vendors4/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="dist/vendors4/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+
+    <!-- Toastr CSS -->
+    <link href="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Pace -->
+    <link rel="stylesheet" href="dist/vendors4/pace-progress/themes/blue/pace-theme-minimal.css">
+
+    <!-- Nestable -->
+    <link href="dist/vendors4/nestable2/dist/jquery.nestable.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="dist/css/fontawesome-free/css/all.min.css">
+</head>
+
+<body>
+    <!-- HK Wrapper -->
+    <div class="hk-wrapper hk-vertical-nav">
+
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+            <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i
+                    class="ion ion-ios-menu"></i></a>
+            <a class="navbar-brand" href="admin.html">
+                <img class="brand-img d-inline-block mr-5" src="dist/img/fitit-logo.png" alt="brand" width="10%" />
+            </a>
+            <ul class="navbar-nav hk-navbar-content" id="ui_header_profile"></ul>
+        </nav>
+        <!-- /Top Navbar -->
+
+        <!--Vertical Nav-->
+        <div id="navHTML"></div>
+        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+
+        <!--/Vertical Nav-->
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper mt-25">
+            <!-- Container -->
+            <div class="container-fluid">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <!-- Wrapper -->
+                        <section class="hk-sec-wrapper">
+                            <div class="row justify-content-between">
+                                <div class="col-md-6 mb-2">
+                                    <h3>Admin Profile</h3>
+                                </div>
+                                <div class="col-md-12 mt-20">
+                                    <div class="row mb-3">
+                                        <div class="col form-outline">
+                                            <label for="txt_name">Full Name :</label>
+                                            <input type="text" class="form-control" id="txt_name"
+                                                placeholder="Enter Name">
+                                        </div>
+                                        <div class="col form-outline">
+                                            <label for="txt_email">Email :</label>
+                                            <input type="text" class="form-control" id="txt_email"
+                                                placeholder="demo50@gmail.com">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <label for="txt_mobile">Mobile no.:</label>
+                                            <input type="text" class="form-control" id="txt_mobile"
+                                                placeholder="Enter Number">
+                                        </div>
+                                        <div class="col form-outline">
+                                            <label>Type :</label><br>
+                                            <select name="" id="list_type" required class="form-control">
+                                                <option hidden>Select Admin Type</option>
+                                                <option value="SUB">Sub Admin</option>
+                                                <option value="CLIENT">Client Admin</option>
+                                                <option value="TRIAL">Trial Admin</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- /Row -->
+            </div>
+            <!-- /Container -->
+
+
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /HK Wrapper -->
+    <!-- jQuery -->
+    <script src="dist/vendors4/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="dist/vendors4/popper.js/dist/umd/popper.min.js"></script>
+    <script src="dist/vendors4/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Slimscroll JavaScript -->
+    <script src="dist/js/jquery.slimscroll.js"></script>
+
+    <!-- Fancy Dropdown JS -->
+    <script src="dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- FeatherIcons JavaScript -->
+    <script src="dist/js/feather.min.js"></script>
+
+    <!-- Toggles JavaScript -->
+    <script src="dist/vendors4/jquery-toggles/toggles.min.js"></script>
+    <script src="dist/js/toggle-data.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+
+    <!-- Counter Animation JavaScript -->
+    <script src="dist/vendors4/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="dist/vendors4/jquery.counterup/jquery.counterup.min.js"></script>
+
+    <!-- Data Table JavaScript -->
+    <script src="dist/vendors4/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="dist/vendors4/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="dist/vendors4/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="dist/vendors4/jszip/dist/jszip.min.js"></script>
+    <script src="dist/vendors4/pdfmake/build/pdfmake.min.js"></script>
+    <script src="dist/vendors4/pdfmake/build/vfs_fonts.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="dist/vendors4/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="dist/vendors4/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="dist/js/dataTables-data.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="dist/vendors4/raphael/raphael.min.js"></script>
+    <script src="dist/vendors4/morris.js/morris.min.js"></script>
+
+    <!-- Select2 JavaScript -->
+    <script src="dist/vendors4/select2/dist/js/select2.full.min.js"></script>
+    <!-- <script src="dist/js/select2-data.js"></script> -->
+
+    <!-- Easy pie chart JS -->
+    <script src="dist/vendors4/easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+
+    <!-- Sweet-alert -->
+    <script src="dist/sweetalert2.js"></script>
+
+    <!-- EChartJS JavaScript -->
+    <script src="dist/vendors4/echarts/dist/echarts-en.min.js"></script>
+
+    <!-- Init JavaScript -->
+    <script src="dist/js/init.js"></script>
+    <script src="dist/js/dashboard2-data.js"></script>
+
+    <!-- Pace -->
+    <script src="dist/vendors4/pace-progress/pace.min.js"></script>
+
+    <!--Nestable js -->
+    <script src="dist/vendors4/nestable2/dist/jquery.nestable.min.js"></script>
+
+    <!-- Custom js -->
+    <script src="dist/app.js"></script>
+    <script src="dist/menu-items.js"></script>
+
+    <!-- Authorization -->
+    <script src="dist/authorization.js"></script>
+
+    <script>
+        // URL
+        let allUsers, commission
+        const urlParams = new URLSearchParams(window.location.search);
+        const admin_id = urlParams.get("admin_id");
+        if (urlParams.has("admin_id")) {
+            if (urlParams.get("admin_id") == '') {
+                window.location.href = 'admins.html'
+            }
+        }
+
+        $(document).ready(() => {
+            getAdminDetails()
+        });
+
+        //Getting Trainer data
+        function getAdminDetails() {
+            $.get({
+                url: `${BASE_URL}/get-admins`,
+                contentType: 'application/json',
+                success: (result) => {
+                    var admins = result.data;
+                    console.log(admins)
+                    if (admins) {
+                        for (var i = 0; i < admins.length; i++) {
+                            var tempAdmin = admins[i];
+                            if (tempAdmin._id == urlParams.get("admin_id")) {
+                                $("#txt_name").val(tempAdmin.full_name);
+                                $("#txt_email").val(tempAdmin.email);
+                                $("#txt_mobile").val(tempAdmin.mobile);
+                                $("#list_type").val(tempAdmin.type);
+                            }
+                        }
+                    }
+                },
+                error: (error) => {
+                    return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

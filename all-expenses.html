@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Total Sales</title>
+    <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="dist/img/favi.ico">
+    <link rel="icon" href="dist/img/favi.ico" type="image/x-icon">
+
+    <!-- Morris Charts CSS -->
+    <link href="dist/vendors4/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+    <!-- Toggles CSS -->
+    <link href="dist/vendors4/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="dist/vendors4/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+
+    <!-- Toastr CSS -->
+    <link href="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Pace -->
+    <link rel="stylesheet" href="dist/vendors4/pace-progress/themes/blue/pace-theme-minimal.css">
+
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="dist/css/fontawesome-free/css/all.min.css">
+</head>
+
+<body>
+    <!-- HK Wrapper -->
+    <div class="hk-wrapper hk-vertical-nav">
+
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+            <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i
+                    class="ion ion-ios-menu"></i></a>
+            <a class="navbar-brand" href="admin.html">
+                <img class="brand-img d-inline-block mr-5" src="dist/img/fitit-logo.png" alt="brand" width="10%" />
+            </a>
+            <ul class="navbar-nav hk-navbar-content" id="ui_header_profile"></ul>
+        </nav>
+        <!-- /Top Navbar -->
+
+        <!--Vertical Nav-->
+        <div id="navHTML"></div>
+        <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
+        <!--/Vertical Nav-->
+
+        <!-- Main Content -->
+        <div class="hk-pg-wrapper mt-25">
+            <!-- Container -->
+            <div class="container-fluid">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <!-- Wrapper -->
+                                <section class="hk-sec-wrapper">
+                                    <div class="row ">
+                                        <div class="col-md-6">
+                                            <h3>Expenses Details</h3>
+                                        </div>
+                                        <div class="col-md-4">
+                                        </div>
+                                        <div class="col-md-2 mt-1">
+                                            <a href="add-expense.html" class="">
+                                                <button type="button" class="btn btn-outline-primary">Add
+                                                    Expenses</button>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="row">
+                                                <div class="col-md-4 mt-4">
+                                                    <div class="card alert-primary pa-5">
+                                                        <div class="card-body">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-md-3 px-0">
+                                                                    <i class="fas fa-hand-holding-usd"
+                                                                        style="font-size: 50px;"></i>
+                                                                </div>
+                                                                <div class="col-md-9 text-right">
+                                                                    <h4 class="card-title mt-2 mb-0" id="total_amount">
+                                                                        ₹3,50,000/-
+                                                                    </h4>
+                                                                    <p class="card-text mt-2">Total Expenses</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mt-4">
+                                                    <div class="card alert-success pa-5">
+                                                        <div class="card-body">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-md-3 px-0">
+                                                                    <i class="fas fa-ad" style="font-size: 50px;"></i>
+                                                                </div>
+                                                                <div class="col-md-9 text-right">
+                                                                    <h4 class="card-title mt-2 mb-0" id="total_ads">
+                                                                        ₹50,000/-
+                                                                    </h4>
+                                                                    <p class="card-text mt-2">Total Ads</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mt-4">
+                                                    <div class="card alert-warning pa-5">
+                                                        <div class="card-body">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-md-3 px-0">
+                                                                    <i class="fa fa-handshake"
+                                                                        style="font-size: 50px;"></i>
+                                                                </div>
+                                                                <div class="col-md-9 text-right">
+                                                                    <h4 class="card-title mt-2 mb-0"
+                                                                        id="total_counselling">₹4,50,000/-
+                                                                    </h4>
+                                                                    <p class="card-text mt-2">Total Counslting</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-25 align-items-center">
+                                        <div class="col-md-7">
+                                            <h4>All Expenses</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mt-15 table-wrap px-0">
+                                        <table id="tbl_invoice_user" class="table table-bordered table-striped"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Expenses No.</th>
+                                                    <th>Expenses category</th>
+                                                    <th>Payment Method</th>
+                                                    <th>Total Amount</th>
+                                                    <th>Date</th>
+                                                    <th>Notes</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="text-center">
+                                                    <td colspan="7"><img src="dist/img/loader.gif" style="width:30px">
+                                                    </td>
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                    <td hidden></td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>Expenses No.</th>
+                                                    <th>Expenses category</th>
+                                                    <th>Payment Method</th>
+                                                    <th>Total Amount</th>
+                                                    <th>Date</th>
+                                                    <th>Notes</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <!-- /Row -->
+                    </div>
+                    <!-- /Container -->
+
+                    <!-- Footer -->
+                    <div class="hk-footer-wrap container">
+                        <footer class="footer">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <p>Copyright &copy
+                                        <a href="https://gcsconsultant.com/digital-marketing-agency.html"
+                                            target="_blank">FG Digital</a>&nbsp;Powered
+                                        by<a href="https://gcsconsultant.com" target="_blank"></a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </footer>
+                    </div>
+                    <!-- /Footer -->
+                </div>
+                <!-- /Main Content -->
+
+            </div>
+            <!-- /HK Wrapper -->
+
+            <!-- jQuery -->
+            <script src="dist/vendors4/jquery/dist/jquery.min.js"></script>
+
+            <!-- Bootstrap Core JavaScript -->
+            <script src="dist/vendors4/popper.js/dist/umd/popper.min.js"></script>
+            <script src="dist/vendors4/bootstrap/dist/js/bootstrap.min.js"></script>
+
+            <!-- Slimscroll JavaScript -->
+            <script src="dist/js/jquery.slimscroll.js"></script>
+
+            <!-- Fancy Dropdown JS -->
+            <script src="dist/js/dropdown-bootstrap-extended.js"></script>
+
+            <!-- FeatherIcons JavaScript -->
+            <script src="dist/js/feather.min.js"></script>
+
+            <!-- Toggles JavaScript -->
+            <script src="dist/vendors4/jquery-toggles/toggles.min.js"></script>
+            <script src="dist/js/toggle-data.js"></script>
+
+            <!-- Toastr JS -->
+            <script src="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+            <script src="dist/js/toast-data.js"></script>
+
+            <!-- Data Table JavaScript -->
+            <script src="dist/vendors4/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="dist/vendors4/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+            <script src="dist/vendors4/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="dist/vendors4/jszip/dist/jszip.min.js"></script>
+            <script src="dist/vendors4/pdfmake/build/pdfmake.min.js"></script>
+            <script src="dist/vendors4/pdfmake/build/vfs_fonts.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="dist/vendors4/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="dist/vendors4/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="dist/js/dataTables-data.js"></script>
+
+            <!-- Counter Animation JavaScript -->
+            <script src="dist/vendors4/waypoints/lib/jquery.waypoints.min.js"></script>
+            <script src="dist/vendors4/jquery.counterup/jquery.counterup.min.js"></script>
+
+            <!-- Select2 JavaScript -->
+            <script src="dist/vendors4/select2/dist/js/select2.full.min.js"></script>
+            <!-- <script src="dist/js/select2-data.js"></script> -->
+
+            <!-- Morris Charts JavaScript -->
+            <script src="dist/vendors4/raphael/raphael.min.js"></script>
+            <script src="dist/vendors4/morris.js/morris.min.js"></script>
+
+            <!-- Easy pie chart JS -->
+            <script src="dist/vendors4/easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+
+            <!-- Apex JavaScript -->
+            <script src="dist/vendors4/apexcharts/dist/apexcharts.min.js"></script>
+
+            <!-- EChartJS JavaScript -->
+            <script src="dist/vendors4/echarts/dist/echarts-en.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <!-- Init JavaScript -->
+            <script src="dist/js/init.js"></script>
+            <script src="dist/js/dashboard2-data.js"></script>
+
+            <!-- Sweet-alert -->
+            <script src="dist/sweetalert2.js"></script>
+
+            <!-- Pace -->
+            <script src="dist/vendors4/pace-progress/pace.min.js"></script>
+
+            <!--Nestable js -->
+            <script src="dist/vendors4/nestable2/dist/jquery.nestable.min.js"></script>
+
+            <!-- Custom Script -->
+            <script src="dist/app.js"></script>
+            <script src="dist/menu-items.js"></script>
+
+            <!-- Authorization -->
+            <script src="dist/authorization.js"></script>
+
+            <!-- DatePiker -->
+            <script src="dist/vendors4/moment/min/moment.min.js"></script>
+            <script src="dist/vendors4/daterangepicker/daterangepicker.js"></script>
+            <link rel="stylesheet" href="dist/vendors4/daterangepicker/daterangepicker.css">
+
+            <script>
+                $(document).ready(() => {
+                    getExpenseAmount();
+                });
+
+                function getExpenseAmount() {
+                    $.get({
+                        url: `${BASE_URL}/expense/get`,
+                        success: (result) => {
+                            // Get data
+                            const totalData = result.data;
+
+                            // Initialize total amount variables
+                            let totalAmount = 0;
+                            let totalAds = 0;
+                            let totalCounselling = 0;
+
+                            // Loop through each expense detail
+                            for (let i = 0; i < totalData.length; i++) {
+                                const expense = totalData[i];
+
+                                // Calculate total amount
+                                const expenseAmount = Number(expense.expenseAmount);
+                                totalAmount += expenseAmount;
+
+                                // Check expense category and update respective total amounts
+                                if (expense.expenseName === 'Ads') {
+                                    totalAds += expenseAmount;
+                                }
+
+                                if (expense.expenseName === 'Counselling') {
+                                    totalCounselling += expenseAmount;
+                                }
+                            }
+
+                            // Format the amounts as Indian rupee style
+                            const formattedTotalAmount = formatAmount(totalAmount);
+                            const formattedTotalAds = formatAmount(totalAds);
+                            const formattedTotalCounselling = formatAmount(totalCounselling);
+
+                            // Call the function to update the total amounts on the UI
+                            updateTotalAmount(formattedTotalAmount, formattedTotalAds, formattedTotalCounselling);
+                        },
+                        error: (error) => {
+                            return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+                        }
+                    });
+                }
+
+                function formatAmount(amount) {
+                    // Format the amount as Indian rupee style
+                    const formattedAmount = amount.toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
+
+                    // Remove the decimal part and add a hyphen
+                    const formattedAmountWithHyphen = formattedAmount.replace(/\.00$/, '') + '/-';
+
+                    return formattedAmountWithHyphen;
+                }
+
+                function updateTotalAmount(amount, amount1, amount2) {
+                    $('#total_amount').text(amount);
+                    $('#total_ads').text(amount1);
+                    $('#total_counselling').text(amount2);
+                }
+            </script>
+
+            <script>
+                let searchOption = document.getElementById('tbl_user_filter')
+                let tblInvoice = $('#tbl_invoice_user').DataTable({
+                    destroy: true,
+                    searching: true,
+                    responsive: true,
+                    lengthMenu: [10, 25, 50, 75, 100, 200, 500, 800, 1000],
+                    pageLength: 10,
+                    paging: true,
+                    language: {
+                        search: "_INPUT_",
+                        searchPlaceholder: "Search...",
+                        "sLengthMenu": "Show _MENU_ Records",
+                    },
+                    "dom": '<"row"<"col-10"l><"col-2"f><"col-12"rt><"col-12">><"row"<"col-9"i><"col-3"p>><"clear">',
+                    columns: [
+                        { width: "1%" },
+                        { width: "20%" },
+                        { width: "20%" },
+                        { width: "20%" },
+                        { width: "15%" },
+                        { width: "10%" },
+                        { width: "20%" },
+                    ],
+                });
+
+                $(document).ready(() => {
+                    getInvoiceDetails()
+                });
+
+                function getInvoiceDetails() {
+                    $.get({
+                        url: `${BASE_URL}/expense/get`,
+                        success: (result) => {
+                            var result = result.data;
+                            console.log(result)
+                            tblInvoice.clear().draw();
+                            let invoiceIndex = 1;
+                            if (result) {
+                                let tableRow = []
+
+                                for (var i = 0; i < result.length; i++) {
+                                    var tempUser = result[i]
+
+                                    var action = `<div class="d-flex">
+                                        <button type="button" class="btn mr-1 btn-outline-success" title="view user" onclick="window.location.href ='update-expense.html?id=${tempUser._id}'")"><i class="fas fa-edit"></i> Update</button>`;
+
+                                    tblInvoice.row.add([
+                                        invoiceIndex,
+                                        `${tempUser.expenseName || 'N/A'}`,
+                                        `${tempUser.expensePaymentMethod || 'N/A'}`,
+                                        tempUser.expenseAmount || "N/A",
+                                        tempUser.date,
+                                        tempUser.expenseItemName || "N/A",
+                                        action
+                                    ]).draw();
+                                    invoiceIndex++
+                                }
+                            }
+                        },
+                        error: (error) => {
+                            return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+
+                        }
+                    });
+                }
+
+            </script>
+
+</body>
+
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>View admin - FWG</title>
+    <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="dist/img/favi.ico">
+    <link rel="icon" href="dist/img/favi.ico" type="image/x-icon">
+
+    <!-- Morris Charts CSS -->
+    <link href="dist/vendors4/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+    <!-- Toggles CSS -->
+    <link href="dist/vendors4/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+    <link href="dist/vendors4/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+
+    <!-- Toastr CSS -->
+    <link href="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Pace -->
+    <link rel="stylesheet" href="dist/vendors4/pace-progress/themes/blue/pace-theme-minimal.css">
+
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="dist/css/fontawesome-free/css/all.min.css">
+</head>
+
+<body>
+
+    <form action="http://localhost/admin/v1/file-upload" method="POST">
+        <input type="file">
+        <button type="submit">submit</button>
+    </form>
+
+    <!-- jQuery -->
+    <script src="dist/vendors4/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="dist/vendors4/popper.js/dist/umd/popper.min.js"></script>
+    <script src="dist/vendors4/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Slimscroll JavaScript -->
+    <script src="dist/js/jquery.slimscroll.js"></script>
+
+    <!-- Fancy Dropdown JS -->
+    <script src="dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- FeatherIcons JavaScript -->
+    <script src="dist/js/feather.min.js"></script>
+
+    <!-- Toggles JavaScript -->
+    <script src="dist/vendors4/jquery-toggles/toggles.min.js"></script>
+    <script src="dist/js/toggle-data.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="dist/vendors4/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+    <script src="dist/js/toast-data.js"></script>
+
+    <!-- Counter Animation JavaScript -->
+    <script src="dist/vendors4/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="dist/vendors4/jquery.counterup/jquery.counterup.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="dist/vendors4/raphael/raphael.min.js"></script>
+    <script src="dist/vendors4/morris.js/morris.min.js"></script>
+
+    <!-- Easy pie chart JS -->
+    <script src="dist/vendors4/easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+
+    <!-- Apex JavaScript -->
+    <script src="dist/vendors4/apexcharts/dist/apexcharts.min.js"></script>
+
+    <!-- EChartJS JavaScript -->
+    <script src="dist/vendors4/echarts/dist/echarts-en.min.js"></script>
+
+    <!-- Init JavaScript -->
+    <script src="dist/js/init.js"></script>
+    <script src="dist/js/dashboard2-data.js"></script>
+
+    <!-- Pace -->
+    <script src="dist/vendors4/pace-progress/pace.min.js"></script>
+
+    <!-- Custom Script -->
+    <script src="dist/app.js"></script>
+    <script src="dist/menu-items.js"></script>
+
+    <!-- Authorization -->
+    <script src="dist/authorization.js"></script>
+
+</body>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has("admin_id")) {
+        if (urlParams.get("admin_id") == '') {
+            window.location.href = 'admins.html'
+        }
+        $("#div_password").show();
+    }
+
+    $(document).ready(() => {
+        getAdmin()
+    });
+
+    //Getting Admin
+    function getAdmin() {
+        $.get({
+            url: BASE_URL + '/get-admins',
+            contentType: 'application/json',
+            success: (result) => {
+                var result = result.data;
+                if (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        var tempAdmin = result[i];
+                        if (tempAdmin._id == urlParams.get("admin_id")) {
+                            $("#txt_name").val(tempAdmin.full_name);
+                            $("#txt_email").val(tempAdmin.email);
+                            $("#txt_mobile").val(tempAdmin.mobile);
+                            $("#lbl_name").html(tempAdmin.full_name);
+                            $("#lbl_email").html(tempAdmin.email);
+                            $("#lbl_mobile").html(tempAdmin.mobile);
+                            if (tempAdmin.access_list && tempAdmin.access_list.length > 0) {
+                                if (tempAdmin.access_list.includes('diet')) {
+                                    $("#chk_diet").prop('checked', true);
+                                }
+                                if (tempAdmin.access_list.includes('diet_assign')) {
+                                    $("#chk_diet_assign").prop('checked', true);
+                                }
+                                if (tempAdmin.access_list.includes('exercise_plan')) {
+                                    $("#chk_exercise").prop('checked', true);
+                                }
+                                if (tempAdmin.access_list.includes('exercise_assign')) {
+                                    $("#chk_exercise_assign").prop('checked', true);
+                                }
+                            }
+                        }
+
+                    }
+                }
+            },
+            error: (error) => {
+                return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+            }
+        });
+    }
+
+    //Updating Password
+    $("#btn_update").click(() => {
+        var password = ($("#txt_password").val()).trim(),
+            conPassword = ($("#txt_conPassword").val()).trim();
+        if (!password || !conPassword) {
+            return $.toast({
+                heading: 'Error!',
+                text: 'Both password and confirm password Required',
+                position: 'top-right',
+                loaderBg: '#f21d1d',
+                class: 'jq-toast-danger',
+                hideAfter: 3500,
+                stack: 6,
+                showHideTransition: 'fade'
+            });
+        }
+        if (password != conPassword) {
+            return $.toast({
+                heading: 'Error!',
+                text: 'Password and confirm password must be same',
+                position: 'top-right',
+                loaderBg: '#f21d1d',
+                class: 'jq-toast-danger',
+                hideAfter: 3500,
+                stack: 6,
+                showHideTransition: 'fade'
+            });
+        }
+        $.post({
+            url: BASE_URL + '/admin-change-password',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                'id': urlParams.get("admin_id"),
+                'password': password,
+            }),
+            success: (result) => {
+                result = result.data;
+                $.toast({
+                    heading: 'Successful',
+                    text: "Password changed successfully",
+                    position: 'top-right',
+                    loaderBg: '#08526e',
+                    class: 'jq-toast-success',
+                    hideAfter: 3500,
+                    stack: 6,
+                    showHideTransition: 'fade'
+                });
+                $("#txt_password").val('');
+                $("#txt_conPassword").val('');
+            },
+            error: (error) => {
+                return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+            },
+            beforeSend: () => {
+                $('#btn_update').attr('disabled', true)
+            },
+            complete: () => {
+                $('#btn_update').removeAttr('disabled')
+            }
+        });
+    })
+
+    // Updating Permission
+    $('#btn_permission').click(() => {
+
+        let chk_diet = $('#chk_diet').is(':checked');
+        let chk_diet_assign = $('#chk_diet_assign').is(':checked');
+        let chk_exercise = $('#chk_exercise').is(':checked');
+        let chk_exercise_assign = $('#chk_exercise_assign').is(':checked');
+
+        let access_list = []
+
+        if (chk_diet) {
+            access_list.push('diet')
+        }
+        if (chk_diet_assign) {
+            access_list.push('diet_assign')
+        }
+        if (chk_exercise) {
+            access_list.push('exercise_plan')
+        }
+        if (chk_exercise_assign) {
+            access_list.push('exercise_assign')
+        }
+
+        let payload = {
+            admin_user_id: urlParams.get("admin_id"),
+            access_list: access_list
+        }
+
+        $.post({
+            url: BASE_URL + '/set-admin-permission',
+            contentType: 'application/json',
+            data: JSON.stringify(payload),
+            success: (result) => {
+                result = result.data;
+                $.toast({
+                    heading: 'Successful',
+                    text: "Permission updated successfully",
+                    position: 'top-right',
+                    loaderBg: '#08526e',
+                    class: 'jq-toast-success',
+                    hideAfter: 3500,
+                    stack: 6,
+                    showHideTransition: 'fade'
+                });
+            },
+            error: (error) => {
+                return error.responseJSON ? toastError('Error', error.responseJSON.message) : toastError();
+            },
+            beforeSend: () => {
+                $('#btn_permission').attr('disabled', true)
+            },
+            complete: () => {
+                $('#btn_permission').removeAttr('disabled')
+            }
+        });
+
+    })
+</script>
+
+</html>
