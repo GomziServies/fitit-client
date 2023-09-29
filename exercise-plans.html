@@ -260,18 +260,8 @@
                 }
 
                 var actionHTML = "";
-                $("#btn_create").hide();
-
-                if (accessList && accessList.includes("diet") && type == "COACH") {
-                    $("#btn_create").show();
-                    actionHTML += `<button type="button" class="btn btn-primary m-1" onclick="window.location.href='exercise-plan-details.html?menu_item=diet_plan&exercise_plan_id=${tempDiet._id}'" title="Exercise Configuration"><i class="fas fa-pencil-alt"></i>&nbsp;Edit</button>`
-                }
-
-                if (type == "MASTER") {
-                    actionHTML += `<button type="button" class="btn btn-primary m-1" onclick="window.location.href='exercise-plan-details.html?menu_item=diet_plan&exercise_plan_id=${tempDiet._id}'" title="Exercise Configuration"><i class="fas fa-pencil-alt"></i>&nbsp;Edit</button>`
-                    $("#btn_create").show();
-
-                }
+                $("#btn_create").show();
+                actionHTML += `<button type="button" class="btn btn-primary m-1" onclick="window.location.href='exercise-plan-details.html?menu_item=diet_plan&exercise_plan_id=${tempDiet._id}'" title="Exercise Configuration"><i class="fas fa-pencil-alt"></i>&nbsp;Edit</button>`
 
                 // actionHTML += `<button type="button" class="btn btn-success m-1" onclick=downloadDietPlan("${tempDiet._id}",this)><i class="fas fa-file-download m1-2"></i> PDF</button>`;
                 actionHTML += `<button type="button" class="btn btn-danger m-1" onclick=removeDietPlan("${tempDiet._id}",this)><i class="fa fa-trash"></i></button>`;
