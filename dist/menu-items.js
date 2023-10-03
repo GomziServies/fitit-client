@@ -111,7 +111,7 @@ let navHTML = `<nav class="hk-nav hk-nav-dark">
 // get type from localstorage parse
 let type = JSON.parse(localStorage.getItem('type'));
 
-if (type === 'SUB' || type === 'TRAIL') {
+if (type === 'SUB' || type === 'TRIAL') {
     let navHTMLSUB = `<nav class="hk-nav hk-nav-dark">
     <a href="javascript:void(0);" id="hk_nav_close" class="hk-nav-close"><span class="feather-icon"><i data-feather="x"></i></span></a>
     <div class="nicescroll-bar">
