@@ -1,5 +1,5 @@
 // let HOST = 'https://fg-app-dev-api.fggroup.in'
-let HOST = 'http://api-fitit-admin.gcsconsultant.com'
+let HOST = 'https://api-fitit-admin.gcsconsultant.com'
 
 // if (['app-dev.fggroup.in'].includes(window.location.hostname)) {
 //     HOST = 'https://fg-app-dev-api.fggroup.in'
