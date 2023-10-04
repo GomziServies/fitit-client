@@ -1,5 +1,5 @@
-// let HOST = 'https://api-fitit-admin.gcsconsultant.com'
-let HOST = 'http://localhost'
+let HOST = 'https://api-fitit-admin.gcsconsultant.com'
+// let HOST = 'http://localhost'
 // if (['fitit.gcsconsultant.com'].includes(window.location.hostname)) {
 //     HOST = 'https://api-fitit-admin.gcsconsultant.com'
 // }
