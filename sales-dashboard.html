@@ -34,12 +34,15 @@
     <!-- HK Wrapper -->
     <div class="hk-wrapper hk-vertical-nav">
 
-        <!-- Top Navbar -->
-        <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+       <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar py-md-0 py-2" style="flex-wrap: nowrap;">
             <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i
                     class="ion ion-ios-menu"></i></a>
-            <a class="navbar-brand" href="admin.html">
+            <a class="navbar-brand d-md-block d-none" href="admin.html">
                 <img class="brand-img d-inline-block mr-5" src="dist/img/fitit-logo.png" alt="brand" width="10%" />
+            </a>
+            <a class="navbar-brand d-md-none d-block" href="admin.html">
+                <img class="brand-img d-inline-block mr-5 mt-2" src="dist/img/fitit-logo.png" alt="brand" width="25%" />
             </a>
             <ul class="navbar-nav hk-navbar-content" id="ui_header_profile"></ul>
         </nav>
@@ -56,151 +59,145 @@
             <div class="container-fluid">
                 <!-- Row -->
                 <div class="row">
-                    <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <!-- Wrapper -->
-                                <section class="hk-sec-wrapper">
-                                    <div class="row justify-content-between">
-                                        <div class="col-md-6">
-                                            <h3>Total Sales</h3>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="row justify-content-end">
-                                                <div class="mr-3">
-                                                    <div id="reportrange"
-                                                        style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
-                                                        <i class="fa fa-calendar"></i>&nbsp;
-                                                        <span></span> <i class="fa fa-caret-down"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8 mt-md-30">
-                                            <div class="row align-items-center">
-                                                <div class="col-md-4">
-                                                    <div class="card alert-primary">
-                                                        <div class="card-body">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-md-3 px-0">
-                                                                    <i class="fas fa-hand-holding-usd"
-                                                                        style="font-size: 50px;"></i>
-                                                                </div>
-                                                                <div class="col-md-9 text-right">
-                                                                    <h4 class="card-title mt-2 mb-0" id="paid_amount">
-                                                                        ₹3,50,000/-
-                                                                    </h4>
-                                                                    <p class="card-text mt-2">Paid Amount</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="position-absolute" style="top: 37%;right: -7px;">
-                                                        <i class="fas fa-plus" style="font-size: 18px;"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="card alert-warning">
-                                                        <div class="card-body">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-md-3 px-0 text-center">
-                                                                    <i class="fas fa-file-invoice-dollar"
-                                                                        style="font-size: 50px;"></i>
-                                                                </div>
-                                                                <div class="col-md-9 text-right">
-                                                                    <h4 class="card-title mt-2 mb-0" id="due_amount">
-                                                                        ₹1,00,000/-
-                                                                    </h4>
-                                                                    <p class="card-text mt-2">Due Amount</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="position-absolute" style="top: 37%;right: -7px;">
-                                                        <i class="fas fa-equals" style="font-size: 18px;"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="card alert-success">
-                                                        <div class="card-body">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-md-3 px-0">
-                                                                    <i class="fas fa-hand-holding-usd"
-                                                                        style="font-size: 50px;"></i>
-                                                                </div>
-                                                                <div class="col-md-9 text-right">
-                                                                    <h4 class="card-title mt-2 mb-0" id="total_amount">
-                                                                        ₹4,50,000/-</h4>
-                                                                    <p class="card-text mt-2">Total Amount</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-25 align-items-center">
-                                        <div class="col-md-6">
-                                            <h4>Paid Amount</h4>
-                                        </div>
-                                        <div class="col-md-6 text-right">
-                                            <a href="create-invoice.html" class="btn btn-outline-blue">Create
-                                                Invoice</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 mt-20">
-                                        <div class="table-wrap">
-                                            <table id="tbl_invoice_user" class="table table-bordered table-striped"
-                                                style="width: 100%;">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No.</th>
-                                                        <th>User Name</th>
-                                                        <th>Mobile</th>
-                                                        <th>Product</th>
-                                                        <th>Paid Amount</th>
-                                                        <th>Total Amount</th>
-                                                        <th>Purchase Date</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="text-center">
-                                                        <td colspan="7"><img src="dist/img/loader.gif"
-                                                                style="width:30px">
-                                                        </td>
-                                                        <td hidden></td>
-                                                        <td hidden></td>
-                                                        <td hidden></td>
-                                                        <td hidden></td>
-                                                        <td hidden></td>
-                                                        <td hidden></td>
-                                                        <td hidden></td>
-                                                    </tr>
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>No.</th>
-                                                        <th>User Name</th>
-                                                        <th>Mobile</th>
-                                                        <th>Product</th>
-                                                        <th id="totalPaidAmountDiv">Paid Amount</th>
-                                                        <th id="totalAmountDiv">Total Amount</th>
-                                                        <th>Purchase Date</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-                        <!-- /Row -->
-                    </div>
                     <!-- /Container -->
-
+                    <div class="col-xl-12">
+                        <!-- Wrapper -->
+                        <section class="hk-sec-wrapper">
+                            <div class="row justify-content-between">
+                                <div class="col-md-6">
+                                    <h3>Total Sales</h3>
+                                </div>
+                                <div class="col-md-5 d-none d-md-block">
+                                    <div class="row justify-content-end">
+                                        <div class="mr-3">
+                                            <div id="reportrange"
+                                                style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                                                <i class="fa fa-calendar"></i>&nbsp;
+                                                <span></span> <i class="fa fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 mt-md-30 d-none d-md-block">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4">
+                                            <div class="card alert-primary">
+                                                <div class="card-body">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-md-3 px-0">
+                                                            <i class="fas fa-hand-holding-usd"
+                                                                style="font-size: 50px;"></i>
+                                                        </div>
+                                                        <div class="col-md-9 text-right">
+                                                            <h4 class="card-title mt-2 mb-0" id="paid_amount">
+                                                                ₹3,50,000/-
+                                                            </h4>
+                                                            <p class="card-text mt-2">Paid Amount</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="position-absolute" style="top: 37%;right: -7px;">
+                                                <i class="fas fa-plus" style="font-size: 18px;"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card alert-warning">
+                                                <div class="card-body">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-md-3 px-0 text-center">
+                                                            <i class="fas fa-file-invoice-dollar"
+                                                                style="font-size: 50px;"></i>
+                                                        </div>
+                                                        <div class="col-md-9 text-right">
+                                                            <h4 class="card-title mt-2 mb-0" id="due_amount">
+                                                                ₹1,00,000/-
+                                                            </h4>
+                                                            <p class="card-text mt-2">Due Amount</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="position-absolute" style="top: 37%;right: -7px;">
+                                                <i class="fas fa-equals" style="font-size: 18px;"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card alert-success">
+                                                <div class="card-body">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-md-3 px-0">
+                                                            <i class="fas fa-hand-holding-usd"
+                                                                style="font-size: 50px;"></i>
+                                                        </div>
+                                                        <div class="col-md-9 text-right">
+                                                            <h4 class="card-title mt-2 mb-0" id="total_amount">
+                                                                ₹4,50,000/-</h4>
+                                                            <p class="card-text mt-2">Total Amount</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-25 align-items-center">
+                                <div class="col-md-6 d-none d-md-block">
+                                    <h4>Paid Amount</h4>
+                                </div>
+                                <div class="col-md-6 text-right d-md-block d-none">
+                                    <a href="create-invoice.html" class="btn btn-outline-blue">Create
+                                        Invoice</a>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-20">
+                                <div class="table-wrap">
+                                    <table id="tbl_invoice_user" class="table table-bordered responsive nowrap"
+                                        style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>User Name</th>
+                                                <th>Mobile</th>
+                                                <th>Product</th>
+                                                <th>Paid Amount</th>
+                                                <th>Total Amount</th>
+                                                <th>Purchase Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-center">
+                                                <td colspan="7"><img src="dist/img/loader.gif"
+                                                        style="width:30px">
+                                                </td>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>User Name</th>
+                                                <th>Mobile</th>
+                                                <th>Product</th>
+                                                <th id="totalPaidAmountDiv">Paid Amount</th>
+                                                <th id="totalAmountDiv">Total Amount</th>
+                                                <th>Purchase Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
                     <!-- Footer -->
                     <div class="hk-footer-wrap container">
                         <footer class="footer">
@@ -220,6 +217,7 @@
                 </div>
                 <!-- /Main Content -->
             </div>
+        </div>
             <!-- /HK Wrapper -->
 
             <!-- jQuery -->
@@ -260,7 +258,8 @@
             <script src="dist/vendors4/datatables.net-buttons/js/buttons.print.min.js"></script>
             <script src="dist/vendors4/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
             <script src="dist/js/dataTables-data.js"></script>
-
+            <link rel="stylesheet" href="dist/vendors4/datatables.net-bs4/dataTables.bootstrap4.min.css">
+            <link rel="stylesheet" href="dist/vendors4/Responsive-2.3.0/css/responsive.bootstrap.min.css">
             <!-- Counter Animation JavaScript -->
             <script src="dist/vendors4/waypoints/lib/jquery.waypoints.min.js"></script>
             <script src="dist/vendors4/jquery.counterup/jquery.counterup.min.js"></script>

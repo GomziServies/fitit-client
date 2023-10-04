@@ -1,4 +1,4 @@
-let navHTML = `<nav class="hk-nav hk-nav-dark">
+let navHTML = `<nav class="hk-nav hk-nav-dark mt-4">
 <a href="javascript:void(0);" id="hk_nav_close" class="hk-nav-close"><span class="feather-icon"><i data-feather="x"></i></span></a>
 <div class="nicescroll-bar">
     <div class="navbar-nav-wrap">
@@ -321,13 +321,6 @@ $(document).ready(() => {
             console.log(error)
         }
     }
-
-    // get access_list from localstorage
-    let access_list = JSON.parse(localStorage.getItem('access_list'));
-    if (access_list) {
-
-    }
-
 })
 
 // $('ul > li').addClass('mt-5')

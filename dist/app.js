@@ -1,11 +1,10 @@
-// let HOST = 'https://fg-app-dev-api.fggroup.in'
-let HOST = 'https://api-fitit-admin.gcsconsultant.com'
-
-// if (['app-dev.fggroup.in'].includes(window.location.hostname)) {
-//     HOST = 'https://fg-app-dev-api.fggroup.in'
+// let HOST = 'https://api-fitit-admin.gcsconsultant.com'
+let HOST = 'http://localhost'
+// if (['fitit.gcsconsultant.com'].includes(window.location.hostname)) {
+//     HOST = 'https://api-fitit-admin.gcsconsultant.com'
 // }
-// if (['app-admin.fggroup.in'].includes(window.location.hostname)) {
-//     HOST = 'https://app-api.fggroup.in'
+// if (['dev-fitit.gcsconsultant.com'].includes(window.location.hostname)) {
+//     HOST = 'https://dev-api-fitit-admin.gcsconsultant.com'
 // }
 
 // console.log('Current Host: ' + HOST)

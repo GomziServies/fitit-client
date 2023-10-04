@@ -89,12 +89,15 @@
     <!-- HK Wrapper -->
     <div class="hk-wrapper hk-vertical-nav">
 
-        <!-- Top Navbar -->
-        <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
+       <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar py-md-0 py-2" style="flex-wrap: nowrap;">
             <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i
                     class="ion ion-ios-menu"></i></a>
-            <a class="navbar-brand" href="admin.html">
+            <a class="navbar-brand d-md-block d-none" href="admin.html">
                 <img class="brand-img d-inline-block mr-5" src="dist/img/fitit-logo.png" alt="brand" width="10%" />
+            </a>
+            <a class="navbar-brand d-md-none d-block" href="admin.html">
+                <img class="brand-img d-inline-block mr-5 mt-2" src="dist/img/fitit-logo.png" alt="brand" width="25%" />
             </a>
             <ul class="navbar-nav hk-navbar-content" id="ui_header_profile"></ul>
         </nav>
@@ -109,7 +112,7 @@
         <div class="hk-pg-wrapper">
             <div class="container-fluid">
                 <div class="container content-header">
-                    <div class="row mt-15 mb-15 align-items-center">
+                    <div class="row mt-sm-30 mt-30 align-items-center">
                         <div class="col-md-6">
                             <h1>Diet Plan</h1>
                         </div>
@@ -184,7 +187,7 @@
                                 <div class="col-md-6 mt-15">
                                     <div>
                                         <table id="tbl_meal"
-                                            class="mt-15 table table-bordered table-striped display pb-30"
+                                            class="mt-15 table table-bordered responsive nowrap display pb-30"
                                             style="width: 100%;">
                                             <thead>
                                                 <tr>
@@ -415,7 +418,8 @@
     <script src="dist/vendors4/datatables.net-buttons/js/buttons.print.min.js"></script>
     <script src="dist/vendors4/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="dist/js/dataTables-data.js"></script>
-
+    <link rel="stylesheet" href="dist/vendors4/datatables.net-bs4/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="dist/vendors4/Responsive-2.3.0/css/responsive.bootstrap.min.css">
     <!-- Morris Charts JavaScript -->
     <script src="dist/vendors4/raphael/raphael.min.js"></script>
     <script src="dist/vendors4/morris.js/morris.min.js"></script>
