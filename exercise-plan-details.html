@@ -119,11 +119,10 @@
                         <div class="col-md-6">
                             <!-- Breadcrumb -->
                             <nav class="hk-breadcrumb" aria-label="breadcrumb">
-                                <ol class="breadcrumb bg-transparent float-sm-right mb-0">
+                                <ol class="breadcrumb bg-transparent float-sm-right mb-0 pl-0 pl-md-3">
                                     <li class="breadcrumb-item"><a href="admin.html?menu_item=menu_dashboard">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a
-                                            href="exercise-plans.html?menu_item=exercise_plan">Exercise</a></li>
+                                    <li class="breadcrumb-item"><a href="exercise-plans.html?menu_item=exercise_plan">Exercise</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Exercise Configuration</li>
                                 </ol>
                             </nav>
@@ -144,7 +143,7 @@
                                     <label for="txt_plan_name">Exercise Plan:</label>
                                     <input type="text" class="form-control" id="txt_plan_name" placeholder="Plan Name">
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 mt-3 mt-md-0">
                                     <label for="list_category">Exercise Category:</label>
                                     <select class="form-control" id="list_category">
                                         <option value="" hidden selected>Exercise Category</option>
@@ -390,6 +389,7 @@
     <script src="dist/js/dataTables-data.js"></script>
     <link rel="stylesheet" href="dist/vendors4/datatables.net-bs4/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="dist/vendors4/Responsive-2.3.0/css/responsive.bootstrap.min.css">
+
     <!-- Morris Charts JavaScript -->
     <script src="dist/vendors4/raphael/raphael.min.js"></script>
     <script src="dist/vendors4/morris.js/morris.min.js"></script>
@@ -440,7 +440,7 @@
             const exerciseRow = $("<div class='row mb-3'></div>");
 
             // Create Exercise Name Input
-            const exerciseNameCol = $("<div class='col'></div>");
+            const exerciseNameCol = $("<div class='col-md-6'></div>");
             const exerciseNameDiv = $("<div class='form-outline'></div>");
             const exerciseNameLabel = $("<label class='form-label'>Exercise Name</label>");
             const exerciseNameInput = $(`<input type='text' required placeholder='Enter Exercise Name' class='form-control exercise_name' name='exerciseName[]' />`);
@@ -449,7 +449,7 @@
             exerciseNameCol.append(exerciseNameDiv);
 
             // Create Rep and Sets Input
-            const repSetsCol = $("<div class='col'></div>");
+            const repSetsCol = $("<div class='col-md-6'></div>");
             const repSetsDiv = $("<div class='form-outline'></div>");
             const repSetsLabel = $("<label class='form-label'>Rep and Sets</label>");
             const repSetsInput = $(`<input type='text' required placeholder='Enter Rep and Sets' class='form-control rep_sets' name='repSets[]' />`);
@@ -458,7 +458,7 @@
             repSetsCol.append(repSetsDiv);
 
             // Create Remove Button
-            const removeButtonCol = $("<div class='col'><label class='form-label'>Action</label> </div>");
+            const removeButtonCol = $("<div class='col-md-6 mt-2'><label class='form-label'>Action</label> </div>");
             const removeButton = $("<button type='button' class='btn btn-danger'>Remove</button>");
             removeButton.click(function () {
                 exerciseRow.remove(); // Remove the exercise field when the "Remove" button is clicked
